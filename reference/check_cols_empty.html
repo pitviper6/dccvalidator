@@ -36,7 +36,13 @@
 
 
 <meta property="og:title" content="Check for empty columns — check_cols_empty" />
-<meta property="og:description" content="Check for empty columns in the data and warn (or fail) if present." />
+<meta property="og:description" content="Check for empty columns in the data and warn (or fail) if present.
+The function takes in a list of required column names that are
+not tested for emptiness. This is due to the existing function
+check_cols_complete(), which ensures that the required columns are
+complete. By ignoring the required columns in check_cols_empty(),
+there are no duplicated results for the same column in the event
+that a required column was also empty." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,11 +130,17 @@
     </div>
 
     <div class="ref-description">
-    <p>Check for empty columns in the data and warn (or fail) if present.</p>
+    <p>Check for empty columns in the data and warn (or fail) if present.
+The function takes in a list of required column names that are
+not tested for emptiness. This is due to the existing function
+<code><a href='check_cols_complete.html'>check_cols_complete()</a></code>, which ensures that the required columns are
+complete. By ignoring the required columns in <code>check_cols_empty()</code>,
+there are no duplicated results for the same column in the event
+that a required column was also empty.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_cols_empty</span>(<span class='no'>data</span>, <span class='kw'>empty_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>""</span>), <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"No columns are empty"</span>,
+    <pre class="usage"><span class='fu'>check_cols_empty</span>(<span class='no'>data</span>, <span class='kw'>empty_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>""</span>), <span class='kw'>required_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"No columns are empty"</span>,
   <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Some columns are empty"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -142,6 +154,11 @@
       <th>empty_values</th>
       <td><p>Values that are considered empty. Defaults to <code>NA</code> and
 <code>""</code>.</p></td>
+    </tr>
+    <tr>
+      <th>required_cols</th>
+      <td><p>A character vector of the required columns to check for
+completeness.</p></td>
     </tr>
     <tr>
       <th>strict</th>
