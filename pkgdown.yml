@@ -2,6 +2,7 @@ pandoc: '2.2'
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
+  customizing-dccvalidator: customizing-dccvalidator.html
   deploying-dccvalidator: deploying-dccvalidator.html
   using-the-dccvalidator-app-amp-ad: using-the-dccvalidator-app-amp-ad.html
   using-the-dccvalidator-pec: using-the-dccvalidator-pec.html

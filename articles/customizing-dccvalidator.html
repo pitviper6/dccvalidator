@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deploying dccvalidator • dccvalidator</title>
+<title>Customizing dccvalidator • dccvalidator</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Deploying dccvalidator">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Customizing dccvalidator">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -81,43 +81,67 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Deploying dccvalidator</h1>
+      <h1>Customizing dccvalidator</h1>
             
       
       
-      <div class="hidden name"><code>deploying-dccvalidator.Rmd</code></div>
+      <div class="hidden name"><code>customizing-dccvalidator.Rmd</code></div>
 
     </div>
 
     
     
-<p>This vignette is applicable to Sage employees who are deploying the application on our Shiny Pro server. To learn about the server and how to get credentials, please read the <a href="https://sagebionetworks.jira.com/wiki/spaces/SageShinyServer/pages/75497489/Shiny+Server">Confluence documentation</a>.</p>
-<p>The app is deployed on the server through the following steps:</p>
+<p>dccvalidator is intended to be customizable for different settings. The Shiny application uses a <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/config.yml">configuration file</a> to set details such as where to store uploaded files, which metadata templates to validate against, whom to contact with questions, etc.</p>
+<p>To create a custom version of the app, you’ll need to follow these steps:</p>
 <ol style="list-style-type: decimal">
-<li>ssh into the Shiny Pro server and navigate to <code>/home/kwoo/ShinyApps/dccvalidator-app</code>
-</li>
-<li>
-<code>git pull</code> changes from GitHub</li>
-<li>To ensure packages are up-to-date, open an R session and run <code>renv::restore()</code>
-</li>
+<li>Create a Synapse project or folder with the appropriate permissions to store uploaded files. In AMP-AD, we created a folder to which consortium members have permissions to read and write, but <em>not</em> download. Only the curation team has the ability to download files (in order to assist with debugging). See this <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/inst/app/create_project.R">example of how to create a project with appropriate permissions</a>.</li>
+<li>Fork the <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/config.yml">dccvalidator</a> GitHub repository.</li>
+<li>Create a new configuration in the <code>config.yml</code> file. Note that any values you do not customize will be inherited from the default configuration.</li>
+<li>(Optional): create a pull request with your configuration back to the upstream dccvalidator repository.</li>
+<li>Within the file <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/app.R"><code>app.R</code></a>, replace the <code>"default"</code> configuration with the name of your new configuration.</li>
+<li>Deploy the application as described in the <a href="https://sage-bionetworks.github.io/dccvalidator/articles/deploying-dccvalidator.html">Deploying dccvalidator</a> vignette.</li>
 </ol>
-<p>You may need to run <code>touch restart.txt</code> afterward to ensure the application is restarted.</p>
-<p>If you want to deploy the app in a different location (e.g. because you want to stand up a new version that is customized for a different community):</p>
-<ol style="list-style-type: decimal">
-<li>ssh into the Shiny Pro server</li>
-<li>Create a folder under <code>/home/yourusername/ShinyApps</code>
-</li>
+<div id="configuration-options" class="section level2">
+<h2 class="hasAnchor">
+<a href="#configuration-options" class="anchor"></a>Configuration options</h2>
+<ul>
 <li>
-<code>git clone</code> the repository into the folder you’ve created</li>
-<li>If needed, make any changes to the application’s behavior by editing the files, or check out a branch that contains your changes</li>
-<li>To ensure packages are up-to-date, open an R session and run <code>renv::restore()</code>
-</li>
-</ol>
-<p>Again, you may need to run <code>touch restart.txt</code> afterward to ensure the application is restarted.</p>
+<code>parent</code>: The Synapse project or folder where files will be stored</li>
+<li>
+<code>study_table</code>: Synapse ID of a table that lists all of the existing studies in the consortium. It should have a column called <code>StudyName</code>.</li>
+<li>
+<code>annotations_table</code>: Synapse ID of a table that lists allowable annotation keys and values for the consortium. This should follow the same basic format as our Synapse Annotations table, e.g. there must be the following columns: <code>key</code>, <code>value</code>, and <code>columnType</code>. <code>columnType</code> options are <code>STRING</code>, <code>BOOLEAN</code>, <code>INTEGER</code>, <code>DOUBLE</code>.</li>
+<li>
+<code>annotations_link</code>: URL to a list or description of allowable annotation values (so users can read more)</li>
+<li>
+<code>templates_link</code>: URL to the location of metadata templates</li>
+<li>
+<code>study_link_animal</code>: URL to an example study description for an animal model study</li>
+<li>
+<code>study_link_human</code>: URL to an example study description for a human study</li>
+<li>
+<code>teams</code>: The team(s) a user must be a member of in order to use the app. If the user is not in any of the teams, they will see a message telling them they must be added to one of the teams.</li>
+<li>
+<code>templates</code> (including <code>manifest_template</code>, <code>individual_templates</code>, <code>biospecimen_templates</code>, and <code>assay_templates</code>): Synapse IDs of templates to use for validation. These should be either .xlsx or .csv files, where the column names reflect the required columns in the template. If the template is an excel file with multiple sheets, the first sheet will be used.</li>
+<li>
+<code>species_list</code>: List of possible species in the consortium. These are shown as options in the validation UI and control which individual template and biospecimen template the app validates against.</li>
+<li>
+<code>complete_columns</code>: For each metadata file and the manifest, a list of the columns that must be complete (i.e. not contain any missing values or empty strings)</li>
+<li>
+<code>contact_email</code>: Email address linked in footer for users to contact if they have questions</li>
+</ul>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
 
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#configuration-options">Configuration options</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
