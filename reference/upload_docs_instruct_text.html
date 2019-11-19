@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Upload documentation to Synapse — upload_documents_ui • dccvalidator</title>
+<title>Create instructions for uploading documentation — upload_docs_instruct_text • dccvalidator</title>
 
 
 <!-- jquery -->
@@ -35,10 +35,12 @@
 
 
 
-<meta property="og:title" content="Upload documentation to Synapse — upload_documents_ui" />
-<meta property="og:description" content="This module creates a page that explains what documentation is needed to
-describe the study and assay(s) that make up the study. It allows the user to
-indicate the name of their study and upload documentation files." />
+<meta property="og:title" content="Create instructions for uploading documentation — upload_docs_instruct_text" />
+<meta property="og:description" content="This function creates the instruction text for the Documentation
+portion of dccvalidator. The study_link_ref argument dictates
+whether instructions for uploading an acknowledgment is added.
+If study_link_ref is an empty string, then the acknowledgement
+instructions are not added." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,30 +125,25 @@ indicate the name of their study and upload documentation files." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Upload documentation to Synapse</h1>
+    <h1>Create instructions for uploading documentation</h1>
     
-    <div class="hidden name"><code>upload_documents_ui.Rd</code></div>
+    <div class="hidden name"><code>upload_docs_instruct_text.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This module creates a page that explains what documentation is needed to
-describe the study and assay(s) that make up the study. It allows the user to
-indicate the name of their study and upload documentation files.</p>
+    <p>This function creates the instruction text for the Documentation
+portion of dccvalidator. The study_link_ref argument dictates
+whether instructions for uploading an acknowledgment is added.
+If study_link_ref is an empty string, then the acknowledgement
+instructions are not added.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>upload_documents_ui</span>(<span class='no'>id</span>, <span class='no'>study_link_human</span>, <span class='no'>study_link_animal</span>,
-  <span class='no'>study_link_ref</span>)
-
-<span class='fu'>upload_documents_server</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='no'>parent_folder</span>,
-  <span class='no'>study_table_id</span>)</pre>
+    <pre class="usage"><span class='fu'>upload_docs_instruct_text</span>(<span class='no'>study_link_human</span>, <span class='no'>study_link_animal</span>,
+  <span class='no'>study_link_ref</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>id</th>
-      <td><p>the module id</p></td>
-    </tr>
     <tr>
       <th>study_link_human</th>
       <td><p>html link to example of a study using human data</p></td>
@@ -160,31 +157,11 @@ indicate the name of their study and upload documentation files.</p>
       <td><p>html link to example of study acknowledgment
 preference</p></td>
     </tr>
-    <tr>
-      <th>input</th>
-      <td><p>the input from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code></p></td>
-    </tr>
-    <tr>
-      <th>output</th>
-      <td><p>the output from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code></p></td>
-    </tr>
-    <tr>
-      <th>session</th>
-      <td><p>the session from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code></p></td>
-    </tr>
-    <tr>
-      <th>parent_folder</th>
-      <td><p>the Synapse folder to put a Documentation folder in</p></td>
-    </tr>
-    <tr>
-      <th>study_table_id</th>
-      <td><p>synapse Id for the consortium study table</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>html ui for the module</p>
+    <p>html taglist with instructions</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
