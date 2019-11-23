@@ -101,6 +101,10 @@
 <li>Within the file <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/app.R"><code>app.R</code></a>, replace the <code>"default"</code> configuration with the name of your new configuration.</li>
 <li>Deploy the application as described in the <a href="https://sage-bionetworks.github.io/dccvalidator/articles/deploying-dccvalidator.html">Deploying dccvalidator</a> vignette.</li>
 </ol>
+<p>Alternatively, instead of forking the repository you can install dccvalidator and create an <code>app.R</code> file containing the following:</p>
+<pre><code><a href="https://rdrr.io/r/base/library.html">library("dccvalidator")
+run_app()</a></code></pre>
+<p>The other steps above (creating a folder to store files, and providing a configuration file with a default configuration) are still necessary.</p>
 <div id="configuration-options" class="section level2">
 <h2 class="hasAnchor">
 <a href="#configuration-options" class="anchor"></a>Configuration options</h2>
