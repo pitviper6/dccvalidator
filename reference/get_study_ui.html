@@ -73,7 +73,7 @@ new name for currently non-existing study
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9009</span>
       </span>
     </div>
 
@@ -143,11 +143,11 @@ new name for currently non-existing study
 
     </div>
 
-    <pre class="usage"><span class='fu'>get_study_names</span>(<span class='no'>study_table_id</span>)
+    <pre class="usage"><span class='fu'>get_study_names</span>(<span class='no'>study_table_id</span>, <span class='no'>syn</span>)
 
 <span class='fu'>get_study_ui</span>(<span class='no'>id</span>)
 
-<span class='fu'>get_study_server</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='no'>study_table_id</span>)</pre>
+<span class='fu'>get_study_server</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='no'>study_table_id</span>, <span class='no'>syn</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,6 +155,10 @@ new name for currently non-existing study
     <tr>
       <th>study_table_id</th>
       <td><p>synapse Id for the consortium study table</p></td>
+    </tr>
+    <tr>
+      <th>syn</th>
+      <td><p>Synapse client object</p></td>
     </tr>
     <tr>
       <th>id</th>

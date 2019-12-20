@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9009</span>
       </span>
     </div>
 
@@ -97,7 +97,10 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install dccvalidator with the following command:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"Sage-Bionetworks/dccvalidator"</span>)</a></code></pre></div>
+<p>Many functions in dccvalidator use reticulate and the <a href="https://pypi.org/project/synapseclient/">Synapse Python client</a>. See the <a href="https://rstudio.github.io/reticulate/#python-version">reticulate documentation</a> for information on how to set R to use a specific version of Python if you don’t want to use the default Python installation on your machine. Whichever Python installation you choose should have synapseclient installed.</p>
+<p>Because dccvalidator uses reticulate, it is not compatible with the <a href="https://r-docs.synapse.org/">synapser</a> package..</p>
 </div>
 <div id="check-data" class="section level2">
 <h2 class="hasAnchor">

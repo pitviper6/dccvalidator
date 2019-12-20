@@ -72,7 +72,7 @@ can_coerce())." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9009</span>
       </span>
     </div>
 
@@ -145,13 +145,13 @@ that are coercible to the type are also treated as valid (see
   <span class='kw'>return_valid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>check_value</span>(<span class='no'>values</span>, <span class='no'>key</span>, <span class='no'>annotations</span>, <span class='kw'>whitelist_keys</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>whitelist_values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return_valid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>whitelist_values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return_valid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>syn</span>)
 
 <span class='fu'>check_values</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='kw'>whitelist_keys</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>whitelist_values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All annotation values are valid"</span>,
   <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Some annotation values are invalid"</span>,
-  <span class='kw'>return_valid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>return_valid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>syn</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -182,6 +182,10 @@ vectors) to whitelist</p></td>
       <th>whitelist_keys</th>
       <td><p>A character vector of annotation keys to whitelist. If
 provided, all values for the given keys will be treated as valid.</p></td>
+    </tr>
+    <tr>
+      <th>syn</th>
+      <td><p>Synapse client object</p></td>
     </tr>
     <tr>
       <th>x</th>

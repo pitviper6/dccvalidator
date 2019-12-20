@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9009</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
     <p>Creates and stores a folder on Synapse under the given parent.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_folder</span>(<span class='no'>parent</span>, <span class='no'>name</span>)</pre>
+    <pre class="usage"><span class='fu'>create_folder</span>(<span class='no'>parent</span>, <span class='no'>name</span>, <span class='no'>synapseclient</span>, <span class='no'>syn</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,6 +148,15 @@
       <th>name</th>
       <td><p>Name of the folder to be created</p></td>
     </tr>
+    <tr>
+      <th>synapseclient</th>
+      <td><p>Synapse client module (e.g. output of
+<code><a href='https://rdrr.io/pkg/reticulate/man/import.html'>reticulate::import("synapseclient")</a></code>)</p></td>
+    </tr>
+    <tr>
+      <th>syn</th>
+      <td><p>Synapse client object</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -156,7 +165,15 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>create_folder</span>(<span class='kw'>parent</span> <span class='kw'>=</span> <span class='st'>"syn17038062"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"my_new_folder"</span>)
+<span class='no'>syn</span> <span class='kw'>&lt;-</span> <span class='no'>synapse</span>$<span class='fu'>Synapse</span>()
+<span class='no'>syn</span>$<span class='fu'>login</span>()
+
+<span class='fu'>create_folder</span>(
+  <span class='kw'>parent</span> <span class='kw'>=</span> <span class='st'>"syn17038062"</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"my_new_folder"</span>,
+  <span class='kw'>synapseclient</span> <span class='kw'>=</span> <span class='no'>synapse</span>,
+  <span class='kw'>syn</span> <span class='kw'>=</span> <span class='no'>syn</span>
+)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

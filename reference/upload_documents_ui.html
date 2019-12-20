@@ -71,7 +71,7 @@ indicate the name of their study and upload documentation files." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9009</span>
       </span>
     </div>
 
@@ -143,7 +143,7 @@ indicate the name of their study and upload documentation files.</p>
   <span class='no'>study_link_ref</span>)
 
 <span class='fu'>upload_documents_server</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='no'>parent_folder</span>,
-  <span class='no'>study_table_id</span>)</pre>
+  <span class='no'>study_table_id</span>, <span class='no'>synapseclient</span>, <span class='no'>syn</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,6 +184,15 @@ preference</p></td>
     <tr>
       <th>study_table_id</th>
       <td><p>synapse Id for the consortium study table</p></td>
+    </tr>
+    <tr>
+      <th>synapseclient</th>
+      <td><p>Synapse client module (e.g. output of
+<code><a href='https://rdrr.io/pkg/reticulate/man/import.html'>reticulate::import("synapseclient")</a></code>)</p></td>
+    </tr>
+    <tr>
+      <th>syn</th>
+      <td><p>Synapse client object</p></td>
     </tr>
     </table>
 

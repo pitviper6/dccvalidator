@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9009</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
     <p>Check if a user is a member of any of the given teams.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_team_membership</span>(<span class='no'>teams</span>, <span class='no'>user</span>)</pre>
+    <pre class="usage"><span class='fu'>check_team_membership</span>(<span class='no'>teams</span>, <span class='no'>user</span>, <span class='no'>syn</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,7 +146,11 @@
     </tr>
     <tr>
       <th>user</th>
-      <td><p>User to check (e.g. output from <code><a href='https://rdrr.io/pkg/synapser/man/synGetUserProfile.html'>synapser::synGetUserProfile()</a></code>)</p></td>
+      <td><p>User to check (e.g. output from syn$getUserProfile())</p></td>
+    </tr>
+    <tr>
+      <th>syn</th>
+      <td><p>Synapse client object</p></td>
     </tr>
     </table>
 

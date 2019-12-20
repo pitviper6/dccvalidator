@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get a template — get_template • dccvalidator</title>
+<title>Get Synapse annotations — get_synapse_annotations • dccvalidator</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,9 @@
 
 
 
-<meta property="og:title" content="Get a template — get_template" />
-<meta property="og:description" content="Get a template" />
+<meta property="og:title" content="Get Synapse annotations — get_synapse_annotations" />
+<meta property="og:description" content="Download current annotation values from Synapse and provide them as a data
+frame." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,45 +127,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get a template</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Sage-Bionetworks/dccvalidator/blob/master/R/check-col-names.R'><code>R/check-col-names.R</code></a></small>
-    <div class="hidden name"><code>get_template.Rd</code></div>
+    <h1>Get Synapse annotations</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Sage-Bionetworks/dccvalidator/blob/master/R/get-synapse-annotations.R'><code>R/get-synapse-annotations.R</code></a></small>
+    <div class="hidden name"><code>get_synapse_annotations.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get a template</p>
+    <p>Download current annotation values from Synapse and provide them as a data
+frame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_template</span>(<span class='no'>synID</span>, <span class='no'>syn</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get_synapse_annotations</span>(<span class='kw'>synID</span> <span class='kw'>=</span> <span class='st'>"syn10242922"</span>, <span class='no'>syn</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>synID</th>
-      <td><p>Synapse ID of an excel or csv file containing a metadata
-template</p></td>
+      <td><p>The Synapse ID of a table to query from. Defaults to
+"syn10242922"</p></td>
     </tr>
     <tr>
       <th>syn</th>
       <td><p>Synapse client object</p></td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments passed to syn$get()</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Character vector of template column names</p>
+    <p>A data frame containing all annotation keys, descriptions, column
+types, maximum sizes, values, value descriptions, sources, and the name of
+the annotation's parent module.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>syn</span> <span class='kw'>&lt;-</span> <span class='no'>synapse</span>$<span class='fu'>Synapse</span>()
+<span class='no'>syn</span>$<span class='fu'>login</span>()
+<span class='fu'>get_synapse_annotations</span>(<span class='kw'>synID</span> <span class='kw'>=</span> <span class='st'>"syn10242922"</span>, <span class='kw'>syn</span> <span class='kw'>=</span> <span class='no'>syn</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

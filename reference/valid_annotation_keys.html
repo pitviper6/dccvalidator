@@ -70,7 +70,7 @@ file, or Synapse file view." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9009</span>
       </span>
     </div>
 
@@ -137,7 +137,7 @@ file, or Synapse file view." />
 file, or Synapse file view.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>valid_annotation_keys</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>valid_annotation_keys</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>syn</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,6 +150,10 @@ file, or Synapse file view.</p>
       <th>annotations</th>
       <td><p>A data frame of annotation definitions. Must contain at
 least three columns: <code>key</code>, <code>value</code>, and <code>columnType</code>.</p></td>
+    </tr>
+    <tr>
+      <th>syn</th>
+      <td><p>Synapse client object</p></td>
     </tr>
     <tr>
       <th>...</th>
