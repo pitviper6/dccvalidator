@@ -103,15 +103,25 @@
 <ol style="list-style-type: decimal">
 <li>Create a Synapse project or folder with the appropriate permissions to store uploaded files. In AMP-AD, we created a folder to which consortium members have permissions to read and write, but <em>not</em> download. Only the curation team has the ability to download files (in order to assist with debugging). See this <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/inst/app/create_project.R">example of how to create a project with appropriate permissions</a>.</li>
 <li>Fork the <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/config.yml">dccvalidator</a> GitHub repository.</li>
-<li>Create a new configuration in the <code>config.yml</code> file. Note that any values you do not customize will be inherited from the default configuration.</li>
+<li>Create a new configuration in the <code>config.yml</code> file. Note that any values you do not customize will be inherited from the default configuration. The configuration file must have a <code>default</code> configuration.</li>
 <li>(Optional): create a pull request with your configuration back to the upstream dccvalidator repository.</li>
 <li>Within the file <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/app.R"><code>app.R</code></a>, replace the <code>"default"</code> configuration with the name of your new configuration.</li>
 <li>Deploy the application as described in the <a href="https://sage-bionetworks.github.io/dccvalidator/articles/deploying-dccvalidator.html">Deploying dccvalidator</a> vignette.</li>
 </ol>
-<p>Alternatively, instead of forking the repository you can install dccvalidator and create an <code>app.R</code> file containing the following:</p>
+<p>To install the dccvalidator instead of forking the repository:</p>
+<ol style="list-style-type: decimal">
+<li>Create an <code>app.R</code> file containing the following:</li>
+</ol>
 <pre><code><a href="https://rdrr.io/r/base/library.html">library("dccvalidator")
 run_app()</a></code></pre>
-<p>The other steps above (creating a folder to store files, and providing a configuration file with a default configuration) are still necessary.</p>
+<ol style="list-style-type: decimal">
+<li>Create a <code>config.yml</code> file using the configuration options specified below and name the parameters “default”.</li>
+</ol>
+<pre><code>default:
+  parent: "syn20400157"</code></pre>
+<ol style="list-style-type: decimal">
+<li>Create a Synapse project or folder with the appropriate permissions to store uploaded files. In AMP-AD, we created a folder to which consortium members have permissions to read and write, but <em>not</em> download. Only the curation team has the ability to download files (in order to assist with debugging). See this <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/inst/app/create_project.R">example of how to create a project with appropriate permissions</a>.</li>
+</ol>
 <div id="configuration-options" class="section level2">
 <h2 class="hasAnchor">
 <a href="#configuration-options" class="anchor"></a>Configuration options</h2>
