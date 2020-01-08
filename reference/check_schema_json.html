@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create folder on Synapse — create_folder • dccvalidator</title>
+<title>Check data against a JSON Schema — check_schema_json • dccvalidator</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Create folder on Synapse — create_folder" />
-<meta property="og:description" content="Creates and stores a folder on Synapse under the given parent." />
+<meta property="og:title" content="Check data against a JSON Schema — check_schema_json" />
+<meta property="og:description" content="Check a JSON blob against a JSON Schema." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,55 +126,66 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create folder on Synapse</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Sage-Bionetworks/dccvalidator/blob/master/R/create-folder.R'><code>R/create-folder.R</code></a></small>
-    <div class="hidden name"><code>create_folder.Rd</code></div>
+    <h1>Check data against a JSON Schema</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Sage-Bionetworks/dccvalidator/blob/master/R/check-schema-json.R'><code>R/check-schema-json.R</code></a></small>
+    <div class="hidden name"><code>check_schema_json.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Creates and stores a folder on Synapse under the given parent.</p>
+    <p>Check a JSON blob against a JSON Schema.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_folder</span>(<span class='no'>parent</span>, <span class='no'>name</span>, <span class='no'>synapseclient</span>, <span class='no'>syn</span>)</pre>
+    <pre class="usage"><span class='fu'>check_schema_json</span>(<span class='no'>json</span>, <span class='no'>schema</span>,
+  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"Data is valid against the schema"</span>,
+  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Data is invalid against the schema"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>parent</th>
-      <td><p>Synapse ID of the parent where the folder should be created</p></td>
+      <th>json</th>
+      <td><p>Contents of a json object, or a filename containing
+one.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>Name of the folder to be created</p></td>
+      <th>schema</th>
+      <td><p>Contents of the json schema, or a filename
+containing a schema.</p></td>
     </tr>
     <tr>
-      <th>synapseclient</th>
-      <td><p>Synapse client module (e.g. output of
-<code><a href='https://rdrr.io/pkg/reticulate/man/import.html'>reticulate::import("synapseclient")</a></code>)</p></td>
+      <th>success_msg</th>
+      <td><p>Message indicating the check succeeded.</p></td>
     </tr>
     <tr>
-      <th>syn</th>
-      <td><p>Synapse client object</p></td>
+      <th>fail_msg</th>
+      <td><p>Message indicating the check failed.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Synapse object of the folder that was created</p>
+    <p>A condition object indicating whether the data is valid against the
+schema.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>syn</span> <span class='kw'>&lt;-</span> <span class='no'>synapse</span>$<span class='fu'>Synapse</span>()
-<span class='no'>syn</span>$<span class='fu'>login</span>()
-
-<span class='fu'>create_folder</span>(
-  <span class='kw'>parent</span> <span class='kw'>=</span> <span class='st'>"syn17038062"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"my_new_folder"</span>,
-  <span class='kw'>synapseclient</span> <span class='kw'>=</span> <span class='no'>synapse</span>,
-  <span class='kw'>syn</span> <span class='kw'>=</span> <span class='no'>syn</span>
-)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>schema</span> <span class='kw'>&lt;-</span> <span class='st'>'{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "properties": {
+    "x": {
+      "type": "integer"
+    }
+  },
+  "required": ["x"]
+}
+'</span>
+<span class='no'>json_valid</span> <span class='kw'>&lt;-</span> <span class='st'>'{
+  "x": 3
+}'</span>
+<span class='no'>json_invalid</span> <span class='kw'>&lt;-</span> <span class='st'>'{
+  "x": 1.5
+}'</span>
+<span class='fu'>check_schema_json</span>(<span class='no'>json_valid</span>, <span class='no'>schema</span>)</div><div class='output co'>#&gt; &lt;check_pass: Data is valid against the schema&gt;</div><div class='input'><span class='fu'>check_schema_json</span>(<span class='no'>json_invalid</span>, <span class='no'>schema</span>)</div><div class='output co'>#&gt; &lt;error/check_fail&gt;
+#&gt; Data is invalid against the schema</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
