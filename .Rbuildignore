@@ -13,6 +13,8 @@
 ^\.lintr$
 ^\.pre-commit-config\.yaml$
 ^\.Rprofile$
+^\.Rprofile\.site$
 ^config\.yml$
 ^_pkgdown\.yml$
 ^requirements\.txt$
+^Dockerfile$
