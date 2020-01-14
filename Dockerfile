@@ -22,7 +22,7 @@ RUN pip3 install --user pandas
 RUN pip3 install --user synapseclient
 
 # install renv
-ENV RENV_VERSION 0.8.2
+ENV RENV_VERSION 0.9.2
 RUN R -e "install.packages('remotes', repos = c(CRAN = 'https://cloud.r-project.org'))"
 RUN R -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"
 
