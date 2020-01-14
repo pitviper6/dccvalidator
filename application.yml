@@ -1,0 +1,5 @@
+specs:
+  - id: dccvalidator
+    display-name: dccvalidator
+    container-cmd: ["R", "-e", "shiny::runApp()"]
+    container-image: dccvalidator
