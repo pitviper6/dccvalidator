@@ -179,12 +179,22 @@ least three columns: <code>key</code>, <code>value</code>, and <code>columnType<
 
     <p>A vector of valid annotation keys present in <code>x</code>.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>annots</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"assay"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"species"</span>),
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rnaSeq"</span>, <span class='st'>"fastq"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"Human"</span>),
+  <span class='kw'>columnType</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>)
+)
+<span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+<span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"rnaSeq"</span>)
+<span class='fu'>valid_annotation_keys</span>(<span class='no'>dat1</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; integer(0)</div><div class='input'><span class='fu'>valid_annotation_keys</span>(<span class='no'>dat2</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; integer(0)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check that class of value matches annotation columnType — check_type • dccvalidator</title>
+<title>Check a set of keys and their values — check_values • dccvalidator</title>
 
 
 <!-- jquery -->
@@ -35,11 +35,8 @@
 
 
 
-<meta property="og:title" content="Check that class of value matches annotation columnType — check_type" />
-<meta property="og:description" content="Given a vector of values, checks that they match the columnType as defined in
-the annotations dictionary. This check is somewhat permissive in that values
-that are coercible to the type are also treated as valid (see
-can_coerce())." />
+<meta property="og:title" content="Check a set of keys and their values — check_values" />
+<meta property="og:description" content="Check a set of keys and their values" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -129,25 +126,16 @@ can_coerce())." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check that class of value matches annotation columnType</h1>
+    <h1>Check a set of keys and their values</h1>
     <small class="dont-index">Source: <a href='https://github.com/Sage-Bionetworks/dccvalidator/blob/master/R/check-annotation-values.R'><code>R/check-annotation-values.R</code></a></small>
     <div class="hidden name"><code>check_values.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Given a vector of values, checks that they match the columnType as defined in
-the annotations dictionary. This check is somewhat permissive in that values
-that are coercible to the type are also treated as valid (see
-<code><a href='can_coerce.html'>can_coerce()</a></code>).</p>
+    <p>Check a set of keys and their values</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_type</span>(<span class='no'>values</span>, <span class='no'>key</span>, <span class='no'>annotations</span>, <span class='kw'>whitelist_values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return_valid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>check_value</span>(<span class='no'>values</span>, <span class='no'>key</span>, <span class='no'>annotations</span>, <span class='kw'>whitelist_keys</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>whitelist_values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return_valid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>syn</span>)
-
-<span class='fu'>check_values</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='kw'>whitelist_keys</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>check_values</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='kw'>whitelist_keys</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>whitelist_values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All annotation values are valid"</span>,
   <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Some annotation values are invalid"</span>,
@@ -157,26 +145,12 @@ that are coercible to the type are also treated as valid (see
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>values</th>
-      <td><p>The values of an annotation</p></td>
-    </tr>
-    <tr>
-      <th>key</th>
-      <td><p>An annotation key</p></td>
+      <th>x</th>
+      <td><p>A data frame of annotation data</p></td>
     </tr>
     <tr>
       <th>annotations</th>
       <td><p>A data frame of annotations to check against</p></td>
-    </tr>
-    <tr>
-      <th>whitelist_values</th>
-      <td><p>A named list of keys (as the names) and values (as
-vectors) to whitelist</p></td>
-    </tr>
-    <tr>
-      <th>return_valid</th>
-      <td><p>Should the function return valid values? Defaults to
-<code>FALSE</code> (i.e. the function will return invalid values).</p></td>
     </tr>
     <tr>
       <th>whitelist_keys</th>
@@ -184,12 +158,9 @@ vectors) to whitelist</p></td>
 provided, all values for the given keys will be treated as valid.</p></td>
     </tr>
     <tr>
-      <th>syn</th>
-      <td><p>Synapse client object</p></td>
-    </tr>
-    <tr>
-      <th>x</th>
-      <td><p>A data frame of annotation data</p></td>
+      <th>whitelist_values</th>
+      <td><p>A named list of keys (as the names) and values (as
+vectors) to whitelist</p></td>
     </tr>
     <tr>
       <th>success_msg</th>
@@ -199,30 +170,46 @@ provided, all values for the given keys will be treated as valid.</p></td>
       <th>fail_msg</th>
       <td><p>Message indicating the check failed.</p></td>
     </tr>
+    <tr>
+      <th>return_valid</th>
+      <td><p>Should the function return valid values? Defaults to
+<code>FALSE</code> (i.e. the function will return invalid values).</p></td>
+    </tr>
+    <tr>
+      <th>syn</th>
+      <td><p>Synapse client object</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector of invalid values (if <code>return_valid = FALSE</code>; otherwise a
-vector of valid values).</p>
-<p>A character vector of valid or invalid values</p>
-<p>If <code>return_valid = FALSE</code>: a condition object indicating whether all
+    <p>If <code>return_valid = FALSE</code>: a condition object indicating whether all
 annotation values are valid. Invalid annotation values are included as data
 within the object: a named list where each element corresponds to a key
 that contains invalid values, and the contents of each element is a vector
 of invalid values. If <code>return_valid = TRUE</code>: a named list of the valid
 annotation keys and values.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='can_coerce.html'>can_coerce()</a></code></p></div>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>annots</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>),
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"txt"</span>, <span class='st'>"csv"</span>),
+  <span class='kw'>columnType</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>),
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  <span class='kw'>fileFormat</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"wrong"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"wrong again"</span>),
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+<span class='fu'>check_values</span>(<span class='no'>dat</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; &lt;error/check_fail&gt;
+#&gt; Some annotation values are invalid</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

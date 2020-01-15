@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check column names against their corresponding template — check_col_names • dccvalidator</title>
+<title>UI function for results boxes module — results_boxes_ui • dccvalidator</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,13 @@
 
 
 
-<meta property="og:title" content="Check column names against their corresponding template — check_col_names" />
-<meta property="og:description" content="Check column names against their corresponding template" />
+<meta property="og:title" content="UI function for results boxes module — results_boxes_ui" />
+<meta property="og:description" content="This function outputs the html tags needed to
+create UI for the successes, warnings, and
+failures results boxes.
+This gives functionality to the results boxes module
+UI, attaching titles and populating
+the validation results." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,89 +131,90 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check column names against their corresponding template</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Sage-Bionetworks/dccvalidator/blob/master/R/check-col-names.R'><code>R/check-col-names.R</code></a></small>
-    <div class="hidden name"><code>check_col_names.Rd</code></div>
+    <h1>UI function for results boxes module</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Sage-Bionetworks/dccvalidator/blob/master/R/mod-results-boxes.R'><code>R/mod-results-boxes.R</code></a></small>
+    <div class="hidden name"><code>results_boxes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Check column names against their corresponding template</p>
+    <p>This function outputs the html tags needed to
+create UI for the successes, warnings, and
+failures results boxes.</p>
+<p>This gives functionality to the results boxes module
+UI, attaching titles and populating
+the validation results.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_col_names</span>(<span class='no'>data</span>, <span class='no'>template</span>, <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>behavior</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>results_boxes_ui</span>(<span class='no'>id</span>)
 
-<span class='fu'>check_cols_manifest</span>(<span class='no'>data</span>, <span class='no'>id</span>,
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All manifest columns present"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the manifest"</span>, <span class='no'>...</span>)
-
-<span class='fu'>check_cols_individual</span>(<span class='no'>data</span>, <span class='no'>id</span>,
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All individual metadata columns present"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the individual metadata file"</span>, <span class='no'>...</span>)
-
-<span class='fu'>check_cols_assay</span>(<span class='no'>data</span>, <span class='no'>id</span>,
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All assay metadata columns present"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the assay metadata file"</span>, <span class='no'>...</span>)
-
-<span class='fu'>check_cols_biospecimen</span>(<span class='no'>data</span>, <span class='no'>id</span>,
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All biospecimen columns present"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the biospecimen metadata file"</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>results_boxes_server</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='no'>results</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>Data frame to check against template (manifest, individual
-metadata, or assay metadata)</p></td>
-    </tr>
-    <tr>
-      <th>template</th>
-      <td><p>Character vector of column names from the template to check
-against</p></td>
-    </tr>
-    <tr>
-      <th>success_msg</th>
-      <td><p>Message indicating the check succeeded.</p></td>
-    </tr>
-    <tr>
-      <th>fail_msg</th>
-      <td><p>Message indicating the check failed.</p></td>
-    </tr>
-    <tr>
-      <th>behavior</th>
-      <td><p>The intended behavior of the test</p></td>
-    </tr>
-    <tr>
       <th>id</th>
-      <td><p>Synapse ID of the template to check against</p></td>
+      <td><p>The module id.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Additional arguments passed to syn$get()</p></td>
+      <th>input</th>
+      <td><p>The input from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>The output from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>The session from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>results</th>
+      <td><p>List of the validation results. If <code>NULL</code>,
+box titles will be default strings (i.e. "Successess (0)");
+otherwise, the boxes will be populated with the
+results.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A condition object indicating whether the required columns were
-present (<code>"check_pass"</code>) or absent (<code>"check_fail"</code>).</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='get_template.html'>dccvalidator::get_template()</a></code></p></div>
+    <p>The html UI for the module.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>template</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"individualID"</span>, <span class='st'>"specimenID"</span>, <span class='st'>"assay"</span>)
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>individualID</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>), <span class='kw'>specimenID</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a1"</span>, <span class='st'>"b1"</span>))
-<span class='fu'>check_col_names</span>(<span class='no'>dat</span>, <span class='no'>template</span>)</div><div class='output co'>#&gt; &lt;error/check_fail&gt;</div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>syn</span> <span class='kw'>&lt;-</span> <span class='no'>synapse</span>$<span class='fu'>Synapse</span>()
-<span class='no'>syn</span>$<span class='fu'>login</span>()
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shiny"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shinydashboard"</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘shinydashboard’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:graphics’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    box</span></div><div class='input'>
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+  <span class='co'># Create some sample results</span>
+  <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='fu'><a href='check_pass.html'>check_pass</a></span>(<span class='kw'>msg</span> <span class='kw'>=</span> <span class='st'>"All good!"</span>, <span class='kw'>behavior</span> <span class='kw'>=</span> <span class='st'>"Values should be &gt;10"</span>),
+    <span class='fu'><a href='check_pass.html'>check_fail</a></span>(
+      <span class='kw'>msg</span> <span class='kw'>=</span> <span class='st'>"Some values are too small"</span>,
+      <span class='kw'>behavior</span> <span class='kw'>=</span> <span class='st'>"Values should be &gt; 10"</span>,
+      <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5.5</span>, <span class='fl'>1.3</span>)
+    )
+  )
+  <span class='co'># Show results in boxes</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='no'>results_boxes_server</span>, <span class='st'>"Validation Results"</span>, <span class='no'>res</span>)
+}
 
-<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/path/file.txt"</span>, <span class='kw'>parent</span> <span class='kw'>=</span> <span class='st'>"syn123"</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"rnaSeq"</span>)
-<span class='fu'>check_cols_manifest</span>(<span class='no'>a</span>, <span class='no'>syn</span>)
-
-<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"rnaSeq"</span>)
-<span class='fu'>check_cols_manifest</span>(<span class='no'>b</span>, <span class='no'>syn</span>)
+<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>request</span>) {
+  <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardPage.html'>dashboardPage</a></span>(
+    <span class='kw'>header</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardHeader.html'>dashboardHeader</a></span>(),
+    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardSidebar.html'>dashboardSidebar</a></span>(),
+    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html'>dashboardBody</a></span>(
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/include.html'>includeCSS</a></span>(
+        <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"app/www/custom.css"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"dccvalidator"</span>)
+      ),
+      <span class='fu'>results_boxes_ui</span>(<span class='st'>"Validation Results"</span>)
+    )
+  )
+}
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -216,7 +222,6 @@ present (<code>"check_pass"</code>) or absent (<code>"check_fail"</code>).</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
