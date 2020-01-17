@@ -139,14 +139,24 @@ Ensure that all specimen IDS in two data frames match" />
 <p>Ensure that all specimen IDS in two data frames match</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_ids_match</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>idcol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"individualID"</span>, <span class='st'>"specimenID"</span>),
-  <span class='kw'>xname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>yname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bidirectional</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>check_ids_match</span>(
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='kw'>idcol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"individualID"</span>, <span class='st'>"specimenID"</span>),
+  <span class='kw'>xname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>yname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bidirectional</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
 
-<span class='fu'>check_indiv_ids_match</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>xname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>yname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bidirectional</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>check_indiv_ids_match</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>xname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>yname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bidirectional</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'>check_specimen_ids_match</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>xname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>yname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bidirectional</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>check_specimen_ids_match</span>(
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='kw'>xname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>yname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bidirectional</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

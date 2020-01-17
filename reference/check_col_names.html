@@ -135,24 +135,45 @@
     <p>Check column names against their corresponding template</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_col_names</span>(<span class='no'>data</span>, <span class='no'>template</span>, <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>behavior</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>check_col_names</span>(
+  <span class='no'>data</span>,
+  <span class='no'>template</span>,
+  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>behavior</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)
 
-<span class='fu'>check_cols_manifest</span>(<span class='no'>data</span>, <span class='no'>id</span>,
+<span class='fu'>check_cols_manifest</span>(
+  <span class='no'>data</span>,
+  <span class='no'>id</span>,
   <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All manifest columns present"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the manifest"</span>, <span class='no'>...</span>)
+  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the manifest"</span>,
+  <span class='no'>...</span>
+)
 
-<span class='fu'>check_cols_individual</span>(<span class='no'>data</span>, <span class='no'>id</span>,
+<span class='fu'>check_cols_individual</span>(
+  <span class='no'>data</span>,
+  <span class='no'>id</span>,
   <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All individual metadata columns present"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the individual metadata file"</span>, <span class='no'>...</span>)
+  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the individual metadata file"</span>,
+  <span class='no'>...</span>
+)
 
-<span class='fu'>check_cols_assay</span>(<span class='no'>data</span>, <span class='no'>id</span>,
+<span class='fu'>check_cols_assay</span>(
+  <span class='no'>data</span>,
+  <span class='no'>id</span>,
   <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All assay metadata columns present"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the assay metadata file"</span>, <span class='no'>...</span>)
+  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the assay metadata file"</span>,
+  <span class='no'>...</span>
+)
 
-<span class='fu'>check_cols_biospecimen</span>(<span class='no'>data</span>, <span class='no'>id</span>,
+<span class='fu'>check_cols_biospecimen</span>(
+  <span class='no'>data</span>,
+  <span class='no'>id</span>,
   <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All biospecimen columns present"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the biospecimen metadata file"</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Missing columns in the biospecimen metadata file"</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
