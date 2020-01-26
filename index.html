@@ -100,8 +100,10 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install dccvalidator with the following command:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"Sage-Bionetworks/dccvalidator"</span>)</a></code></pre></div>
+<p>You can install dccvalidator from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"dccvalidator"</span>)</a></code></pre></div>
+<p>To install the development version from GitHub, run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"Sage-Bionetworks/dccvalidator"</span>)</a></code></pre></div>
 <p>Many functions in dccvalidator use reticulate and the <a href="https://pypi.org/project/synapseclient/">Synapse Python client</a>. See the <a href="https://rstudio.github.io/reticulate/#python-version">reticulate documentation</a> for information on how to set R to use a specific version of Python if you don’t want to use the default Python installation on your machine. Whichever Python installation you choose should have synapseclient installed.</p>
 <p>Because dccvalidator uses reticulate, it is not compatible with the <a href="https://r-docs.synapse.org/">synapser</a> package..</p>
 </div>
@@ -130,9 +132,9 @@
 <h1 class="hasAnchor">
 <a href="#local-development" class="anchor"></a>Local development</h1>
 <p><code>dccvalidator</code> uses pre-commit hooks to check for common issues, such as code style (which should conform to <a href="https://style.tidyverse.org/">tidyverse style</a>), code parsability, and up-to-date .Rd documentation. To use, you will need to install <a href="https://pre-commit.com/#intro">pre-commit</a>. If on a Mac, I recommend using <a href="https://brew.sh/">homebrew</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">brew install pre<span class="op">-</span>commit</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">brew install pre<span class="op">-</span>commit</a></code></pre></div>
 <p>Then, within this git repo, run:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">pre<span class="op">-</span>commit install</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pre<span class="op">-</span>commit install</a></code></pre></div>
 <p>When you commit your changes, pre-commit will run the checks described above, and the commit will fail if the checks do not pass. If you are experiencing issues with the checks and want to commit your work and worry about them later, you can run <code>git commit --no-verify</code> to skip all checks. Or, you can skip certain hooks by their ID (as shown in the file <code>.pre-commit-config.yaml</code>), e.g. <code>SKIP=roxygenize git commit -m "foo"</code>.</p>
 <hr>
 <p>Please note that the dccvalidator project is released with a <a href="https://sage-bionetworks.github.io/dccvalidator/CODE_OF_CONDUCT">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
@@ -144,6 +146,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=dccvalidator">https://​cloud.r-project.org/​package=dccvalidator</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/Sage-Bionetworks/dccvalidator">https://​github.com/​Sage-Bionetworks/​dccvalidator</a>
 </li>
 </ul>
@@ -176,6 +180,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/Sage-Bionetworks/dccvalidator"><img src="https://travis-ci.org/Sage-Bionetworks/dccvalidator.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=dccvalidator"><img src="https://www.r-pkg.org/badges/version/dccvalidator" alt="CRAN status"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
 </ul>
 </div>
