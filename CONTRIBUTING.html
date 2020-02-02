@@ -159,6 +159,17 @@
 <li>We use <a href="https://cran.r-project.org/package=testthat">testthat</a>. Contributions with test cases included are easier to accept.</li>
 </ul>
 </div>
+<div id="local-development" class="section level3">
+<h3 class="hasAnchor">
+<a href="#local-development" class="anchor"></a>Local development</h3>
+<p><code>dccvalidator</code> uses pre-commit hooks to check for common issues, such as code style (which should conform to <a href="https://style.tidyverse.org/">tidyverse style</a>), code parsability, and up-to-date .Rd documentation. To use, you will need to install <a href="https://pre-commit.com/#intro">pre-commit</a>. If on a Mac, I recommend using <a href="https://brew.sh/">homebrew</a>:</p>
+<pre><code>brew install pre-commit</code></pre>
+<p>Then, within this git repo, run:</p>
+<pre><code>pre-commit install</code></pre>
+<p>When you commit your changes, pre-commit will run the checks described above, and the commit will fail if the checks do not pass. If you are experiencing issues with the checks and want to commit your work and worry about them later, you can run <code>git commit --no-verify</code> to skip all checks. Or, you can skip certain hooks by their ID (as shown in the file <code>.pre-commit-config.yaml</code>), e.g. <code>SKIP=roxygenize git commit -m "foo"</code>.</p>
+<hr>
+<p>Please note that the dccvalidator project is released with a <a href="https://sage-bionetworks.github.io/dccvalidator/CODE_OF_CONDUCT">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+</div>
 <div id="code-of-conduct" class="section level3">
 <h3 class="hasAnchor">
 <a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h3>

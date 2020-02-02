@@ -128,17 +128,6 @@
 <p>The application also allows users to submit documentation of their study, a description of the methods used, etc.</p>
 <p>See the <a href="https://sage-bionetworks.github.io/dccvalidator/articles/customizing-dccvalidator.html">customizing dccvalidator</a> vignette for information on how to spin up a customized version of the application</p>
 </div>
-<div id="local-development" class="section level1">
-<h1 class="hasAnchor">
-<a href="#local-development" class="anchor"></a>Local development</h1>
-<p><code>dccvalidator</code> uses pre-commit hooks to check for common issues, such as code style (which should conform to <a href="https://style.tidyverse.org/">tidyverse style</a>), code parsability, and up-to-date .Rd documentation. To use, you will need to install <a href="https://pre-commit.com/#intro">pre-commit</a>. If on a Mac, I recommend using <a href="https://brew.sh/">homebrew</a>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">brew install pre<span class="op">-</span>commit</a></code></pre></div>
-<p>Then, within this git repo, run:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pre<span class="op">-</span>commit install</a></code></pre></div>
-<p>When you commit your changes, pre-commit will run the checks described above, and the commit will fail if the checks do not pass. If you are experiencing issues with the checks and want to commit your work and worry about them later, you can run <code>git commit --no-verify</code> to skip all checks. Or, you can skip certain hooks by their ID (as shown in the file <code>.pre-commit-config.yaml</code>), e.g. <code>SKIP=roxygenize git commit -m "foo"</code>.</p>
-<hr>
-<p>Please note that the dccvalidator project is released with a <a href="https://sage-bionetworks.github.io/dccvalidator/CODE_OF_CONDUCT">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
-</div>
 
   </div>
 
