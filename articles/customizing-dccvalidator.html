@@ -110,17 +110,17 @@
 </ol>
 <p>To install the dccvalidator instead of forking the repository:</p>
 <ol style="list-style-type: decimal">
-<li>Create an <code>app.R</code> file containing the following:</li>
-</ol>
+<li>
+<p>Create an <code>app.R</code> file containing the following:</p>
 <pre><code><a href="https://rdrr.io/r/base/library.html">library("dccvalidator")
 run_app()</a></code></pre>
-<ol style="list-style-type: decimal">
-<li>Create a <code>config.yml</code> file using the configuration options specified below and name the parameters “default”.</li>
-</ol>
+</li>
+<li>
+<p>Create a <code>config.yml</code> file using the configuration options specified below and name the parameters “default”.</p>
 <pre><code>default:
-  parent: "syn20400157"</code></pre>
-<ol style="list-style-type: decimal">
-<li>Create a Synapse project or folder with the appropriate permissions to store uploaded files. In AMP-AD, we created a folder to which consortium members have permissions to read and write, but <em>not</em> download. Only the curation team has the ability to download files (in order to assist with debugging). See this <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/inst/app/create_project.R">example of how to create a project with appropriate permissions</a>.</li>
+parent: "syn20400157"</code></pre>
+</li>
+<li><p>Create a Synapse project or folder with the appropriate permissions to store uploaded files. In AMP-AD, we created a folder to which consortium members have permissions to read and write, but <em>not</em> download. Only the curation team has the ability to download files (in order to assist with debugging). See this <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/inst/app/create_project.R">example of how to create a project with appropriate permissions</a>.</p></li>
 </ol>
 <div id="configuration-options" class="section level2">
 <h2 class="hasAnchor">
