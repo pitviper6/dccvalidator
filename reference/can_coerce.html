@@ -170,7 +170,9 @@ otherwise.</p>
 read lengths, pH values, etc., which are defined as strings in our annotation
 vocabulary but can reasonably be numbers.</p>
 <p>Additionally, this function will return <code>TRUE</code> if the values are integers and
-the desired class is numeric.</p>
+the desired class is numeric, and will return <code>TRUE</code> if the values are
+numeric but are whole numbers. <code>2.0</code> is considered coercible to integer, but
+<code>2.1</code> is not.</p>
 <p>It will also allow the following capitalizations of boolean values: true,
 True, TRUE, false, False, FALSE. These are all treated as valid booleans by
 Synapse.</p>
@@ -189,6 +191,7 @@ required type but no enumerated values.</p>
 <span class='fu'>can_coerce</span>(<span class='fl'>TRUE</span>, <span class='st'>"character"</span>)
 <span class='fu'>can_coerce</span>(<span class='fl'>1L</span>, <span class='st'>"character"</span>)
 <span class='fu'>can_coerce</span>(<span class='fl'>1L</span>, <span class='st'>"numeric"</span>)
+<span class='fu'>can_coerce</span>(<span class='fl'>1.0</span>, <span class='st'>"integer"</span>)
 
 <span class='co'># Not coercible:</span>
 <span class='fu'>can_coerce</span>(<span class='st'>"foo"</span>, <span class='st'>"numeric"</span>)
