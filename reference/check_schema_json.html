@@ -171,7 +171,8 @@ containing a schema.</p></td>
 schema.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>schema</span> <span class='kw'>&lt;-</span> <span class='st'>'{
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"jsonvalidate"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+<span class='no'>schema</span> <span class='kw'>&lt;-</span> <span class='st'>'{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "properties": {
     "x": {
@@ -187,7 +188,9 @@ schema.</p>
 <span class='no'>json_invalid</span> <span class='kw'>&lt;-</span> <span class='st'>'{
   "x": 1.5
 }'</span>
-<span class='fu'>check_schema_json</span>(<span class='no'>json_valid</span>, <span class='no'>schema</span>)</div><div class='output co'>#&gt; &lt;check_pass: Data is valid against the schema&gt;</div><div class='input'><span class='fu'>check_schema_json</span>(<span class='no'>json_invalid</span>, <span class='no'>schema</span>)</div><div class='output co'>#&gt; &lt;error/check_fail&gt;
+<span class='fu'>check_schema_json</span>(<span class='no'>json_valid</span>, <span class='no'>schema</span>)
+<span class='fu'>check_schema_json</span>(<span class='no'>json_invalid</span>, <span class='no'>schema</span>)
+}</div><div class='output co'>#&gt; &lt;error/check_fail&gt;
 #&gt; Data is invalid against the schema</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
