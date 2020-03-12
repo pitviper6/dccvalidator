@@ -98,7 +98,13 @@
 
     
     
-<p>dccvalidator is intended to be customizable for different settings. The Shiny application uses a <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/config.yml">configuration file</a> to set details such as where to store uploaded files, which metadata templates to validate against, whom to contact with questions, etc.</p>
+<p>dccvalidator is intended customizable for different settings, however the built-in Shiny application is designed to ensure that data conforms to a specific project organization structure in which data is organized into studies that are described with a combination of metadata files. These metadata files document the individuals, specimens, and assay(s) that were performed in the study. Documenting the data in this way allows researchers to describe the study at different levels while minimizing repetition. These metadata files can later be joined on the <code>individualID</code> and <code>specimenID</code> columns to create a table of all of the metadata for the study.</p>
+<p>For projects like AMP-AD, PsychENCODE, and others that follow the same structure, see the next section (“Customizing the Shiny application”) for how configure an instance of the application for the project.</p>
+<p>For projects that do not follow the same structure but wish to use some elements of dccvalidator’s data validation capabilities, see “Extending dccvalidator” below.</p>
+<div id="customizing-the-shiny-application" class="section level2">
+<h2 class="hasAnchor">
+<a href="#customizing-the-shiny-application" class="anchor"></a>Customizing the Shiny application</h2>
+<p>The Shiny app uses a <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/config.yml">configuration file</a> to set details such as where to store uploaded files, which metadata templates to validate against, whom to contact with questions, etc.</p>
 <p>To create a custom version of the app, you’ll need to follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Create a Synapse project or folder with the appropriate permissions to store uploaded files. In AMP-AD, we created a folder to which consortium members have permissions to read and write, but <em>not</em> download. Only the curation team has the ability to download files (in order to assist with debugging). See this <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/inst/app/create_project.R">example of how to create a project with appropriate permissions</a>.</li>
@@ -122,9 +128,9 @@ parent: "syn20400157"</code></pre>
 </li>
 <li><p>Create a Synapse project or folder with the appropriate permissions to store uploaded files. In AMP-AD, we created a folder to which consortium members have permissions to read and write, but <em>not</em> download. Only the curation team has the ability to download files (in order to assist with debugging). See this <a href="https://github.com/Sage-Bionetworks/dccvalidator/blob/master/inst/app/create_project.R">example of how to create a project with appropriate permissions</a>.</p></li>
 </ol>
-<div id="configuration-options" class="section level2">
-<h2 class="hasAnchor">
-<a href="#configuration-options" class="anchor"></a>Configuration options</h2>
+<div id="configuration-options" class="section level3">
+<h3 class="hasAnchor">
+<a href="#configuration-options" class="anchor"></a>Configuration options</h3>
 <ul>
 <li>
 <code>parent</code>: The Synapse project or folder where files will be stored</li>
@@ -149,10 +155,157 @@ parent: "syn20400157"</code></pre>
 <li>
 <code>species_list</code>: List of possible species in the consortium. These are shown as options in the validation UI and control which individual template and biospecimen template the app validates against.</li>
 <li>
-<code>complete_columns</code>: For each metadata file and the manifest, a list of the columns that must be complete (i.e. not contain any missing values or empty strings)</li>
+<code>complete_columns</code>: For each metadata file and the manifest, a list of the columns that must be complete (i.e. not contain any missing values or empty strings). For metadata files, this should typically include <code>"individualID"</code> and/or <code>"specimenID"</code>.</li>
 <li>
 <code>contact_email</code>: Email address linked in footer for users to contact if they have questions</li>
 </ul>
+</div>
+</div>
+<div id="extending-dccvalidator" class="section level2">
+<h2 class="hasAnchor">
+<a href="#extending-dccvalidator" class="anchor"></a>Extending dccvalidator</h2>
+<p>Users who wish to use dccvalidator for projects that do not follow the same structure as AMP-AD and PsychENCODE can do so by reusing the existing validation functions in their own R code, implementing new checks as needed, and reusing Shiny modules from dccvalidator.</p>
+<div id="using-validation-functions-in-scripts" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-validation-functions-in-scripts" class="anchor"></a>Using validation functions in scripts</h3>
+<p>Functions to check data for common quality issues are at the core of dccvalidator. These functions in dccvalidator are all named with the pattern <code>check_*()</code>: <code><a href="../reference/check_annotation_keys.html">check_annotation_keys()</a></code>, <code><a href="../reference/check_annotation_values.html">check_annotation_values()</a></code>, <code><a href="../reference/check_cols_empty.html">check_cols_empty()</a></code>, etc. See the <a href="https://sage-bionetworks.github.io/dccvalidator/reference/index.html#section-data-validation-functions">function reference</a> for a complete list.</p>
+<p>These functions are used in the dccvalidator Shiny app, but they can also be used in scripts or reports. Each function takes data as input and returns results in the form of custom condition objects. The condition objects inherit from R’s <code>"message"</code>, <code>"warning"</code>, and <code>"error"</code> classes. However, rather than raising a message/warning/error, the check functions in dccvalidator return the condition objects themselves.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"dccvalidator"</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"readr"</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">## Load a sample manifest</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">manifest &lt;-<span class="st"> </span><span class="kw"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span>(</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test_manifest.txt"</span>, <span class="dt">package =</span> <span class="st">"dccvalidator"</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">manifest</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; # A tibble: 3 x 12</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;   path  parent specimenID individualID assay fakeAnnotation tissue organ</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; 1 /foo… syn20… a1         P01          rnaS…              1 kleen… wron…</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 2 /foo… syn20… a2         P02          rnaS…              2 puffs  anot…</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; 3 test… syn20… &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;              NA &lt;NA&gt;   &lt;NA&gt; </span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; # … with 4 more variables: metadataType &lt;chr&gt;, isMultiSpecimen &lt;lgl&gt;,</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; #   grant &lt;lgl&gt;, consortium &lt;lgl&gt;</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">## Check that required columns are complete in the manifest</a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">result &lt;-<span class="st"> </span><span class="kw"><a href="../reference/check_cols_complete.html">check_cols_complete</a></span>(</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">  manifest,</a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">  <span class="dt">required_cols =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"path"</span>, <span class="st">"parent"</span>, <span class="st">"grant"</span>)</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">)</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">result</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; &lt;error/check_fail&gt;</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt; Some required columns are not complete</span></a></code></pre></div>
+<p>The condition objects contain several useful pieces of information. There is a message describing the result of the check, as well as a message describing the expected outcome. For warnings and errors, the data that caused the warning or error is included.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">result<span class="op">$</span>message</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] "Some required columns are not complete"</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">result<span class="op">$</span>behavior</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; [1] "Columns path, parent, grant should be complete."</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">result<span class="op">$</span>data</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; [1] "grant"</span></a></code></pre></div>
+</div>
+<div id="creating-new-validation-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#creating-new-validation-functions" class="anchor"></a>Creating new validation functions</h3>
+<p>While we have functions for many data validation tasks, users may wish to create their own custom checking functions. The functions <code><a href="../reference/check_pass.html">check_pass()</a></code>, <code><a href="../reference/check_pass.html">check_warn()</a></code>, and <code><a href="../reference/check_pass.html">check_fail()</a></code> will create condition objects from the provided arguments. Here is an example of how one could write a custom function that checks if pH values are within an appropriate range.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">pH =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">-2</span>, <span class="dv">0</span>, <span class="dv">15</span>))</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">check_values_ph &lt;-<span class="st"> </span><span class="cf">function</span>(data, <span class="dt">ph_col =</span> <span class="st">"pH"</span>,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">                            <span class="dt">success_msg =</span> <span class="st">"All pH values are valid"</span>,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">                            <span class="dt">fail_msg =</span> <span class="st">"Some pH values are outside the range 0-14"</span>,</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">                            <span class="dt">behavior_msg =</span> <span class="st">"pH values should be between 0-14"</span>) {</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">  values &lt;-<span class="st"> </span>data[, ph_col, drop =<span class="st"> </span><span class="ot">TRUE</span>]</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">  <span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/all.html">all</a></span>(values <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>values <span class="op">&lt;=</span><span class="st"> </span><span class="dv">14</span>)) {</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="kw"><a href="../reference/check_pass.html">check_pass</a></span>(</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">      <span class="dt">msg =</span> success_msg,</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">      <span class="dt">behavior =</span> behavior_msg</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">    )</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">    <span class="kw"><a href="../reference/check_pass.html">check_fail</a></span>(</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">      <span class="dt">msg =</span> fail_msg,</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">      <span class="dt">behavior =</span> behavior_msg,</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">      <span class="dt">data =</span> values[values <span class="op">&gt;</span><span class="st"> </span><span class="dv">14</span> <span class="op">|</span><span class="st"> </span>values <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>]</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">    )</a>
+<a class="sourceLine" id="cb5-19" data-line-number="19">  }</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">}</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="kw">check_values_ph</span>(dat)</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; &lt;error/check_fail&gt;</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; Some pH values are outside the range 0-14</span></a></code></pre></div>
+<p>The <code><a href="../reference/check_condition.html">check_condition()</a></code> function can make the above a little more concise:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">check_values_ph &lt;-<span class="st"> </span><span class="cf">function</span>(data, <span class="dt">ph_col =</span> <span class="st">"pH"</span>,</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">                            <span class="dt">success_msg =</span> <span class="st">"All pH values are valid"</span>,</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">                            <span class="dt">fail_msg =</span> <span class="st">"Some pH values are outside the range 0-14"</span>,</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">                            <span class="dt">behavior_msg =</span> <span class="st">"pH values should be between 0-14"</span>) {</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  values &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>(data[, ph_col, <span class="dt">drop =</span> <span class="ot">TRUE</span>])</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  all_valid &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/all.html">all</a></span>(values <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>values <span class="op">&lt;=</span><span class="st"> </span><span class="dv">14</span>)</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">  </a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="kw"><a href="../reference/check_condition.html">check_condition</a></span>(</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">msg =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(all_valid, success_msg, fail_msg),</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">behavior =</span> behavior_msg,</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">    <span class="dt">data =</span> <span class="cf">if</span> (<span class="op">!</span>all_valid) values[values <span class="op">&gt;</span><span class="st"> </span><span class="dv">14</span> <span class="op">|</span><span class="st"> </span>values <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>],</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">    <span class="dt">type =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(all_valid, <span class="st">"check_pass"</span>, <span class="st">"check_fail"</span>)</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">  )</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">}</a></code></pre></div>
+</div>
+<div id="reusing-app-modules" class="section level3">
+<h3 class="hasAnchor">
+<a href="#reusing-app-modules" class="anchor"></a>Reusing app modules</h3>
+<p>The Shiny app that dccvalidator provides allows users to see the results of data validation. This module (<code><a href="../reference/results_boxes.html">results_boxes_server()</a></code>/<code><a href="../reference/results_boxes.html">results_boxes_ui()</a></code>) is exported from dccvalidator and can be reused in other Shiny applications like so:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"shiny"</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"shinydashboard"</span>)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="co"># Load sample data</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">  manifest &lt;-<span class="st"> </span><span class="kw"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span>(</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test_manifest.txt"</span>, <span class="dt">package =</span> <span class="st">"dccvalidator"</span>)</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">  )</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">  biosp &lt;-<span class="st"> </span><span class="kw"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span>(</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">    <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test_biospecimen.csv"</span>, <span class="dt">package =</span> <span class="st">"dccvalidator"</span>)</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">  )</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">  </a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">  <span class="co"># Add logic to run the checks you are interested in and store the results in a</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">  <span class="co"># list. Here is an example:</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15">  res &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
+<a class="sourceLine" id="cb7-16" data-line-number="16">    <span class="kw"><a href="../reference/check_cols_complete.html">check_cols_complete</a></span>(</a>
+<a class="sourceLine" id="cb7-17" data-line-number="17">      manifest,</a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">      <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"path"</span>, <span class="st">"parent"</span>, <span class="st">"grant"</span>),</a>
+<a class="sourceLine" id="cb7-19" data-line-number="19">      <span class="dt">success_msg =</span> <span class="st">"All required columns present are complete in the manifest"</span>,</a>
+<a class="sourceLine" id="cb7-20" data-line-number="20">      <span class="dt">fail_msg =</span> <span class="st">"Some required columns are incomplete in the manifest"</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21">    ),</a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">    <span class="kw"><a href="../reference/check_cols_complete.html">check_cols_complete</a></span>(</a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">      biosp,</a>
+<a class="sourceLine" id="cb7-24" data-line-number="24">      <span class="st">"specimenID"</span>,</a>
+<a class="sourceLine" id="cb7-25" data-line-number="25">      <span class="dt">success_msg =</span> <span class="st">"All required columns present are complete in the biospecimen metadata"</span>,</a>
+<a class="sourceLine" id="cb7-26" data-line-number="26">      <span class="dt">fail_msg =</span> <span class="st">"Some required columns are incomplete in the biospecimen metadata"</span></a>
+<a class="sourceLine" id="cb7-27" data-line-number="27">    ),</a>
+<a class="sourceLine" id="cb7-28" data-line-number="28">    <span class="kw"><a href="../reference/check_indiv_ids_dup.html">check_specimen_ids_dup</a></span>(</a>
+<a class="sourceLine" id="cb7-29" data-line-number="29">      biosp,</a>
+<a class="sourceLine" id="cb7-30" data-line-number="30">      <span class="dt">success_msg =</span> <span class="st">"Specimen IDs in the biospecimen metadata file are unique"</span>,</a>
+<a class="sourceLine" id="cb7-31" data-line-number="31">      <span class="dt">fail_msg =</span> <span class="st">"Duplicate specimen IDs found in the biospecimen metadata file"</span></a>
+<a class="sourceLine" id="cb7-32" data-line-number="32">    )</a>
+<a class="sourceLine" id="cb7-33" data-line-number="33">  )</a>
+<a class="sourceLine" id="cb7-34" data-line-number="34">  </a>
+<a class="sourceLine" id="cb7-35" data-line-number="35">  <span class="co"># Show results in boxes</span></a>
+<a class="sourceLine" id="cb7-36" data-line-number="36">  <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/callModule.html">callModule</a></span>(results_boxes_server, <span class="st">"Validation Results"</span>, res)</a>
+<a class="sourceLine" id="cb7-37" data-line-number="37">}</a>
+<a class="sourceLine" id="cb7-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb7-39" data-line-number="39">ui &lt;-<span class="st"> </span><span class="cf">function</span>(request) {</a>
+<a class="sourceLine" id="cb7-40" data-line-number="40">  <span class="kw"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardPage.html">dashboardPage</a></span>(</a>
+<a class="sourceLine" id="cb7-41" data-line-number="41">    <span class="dt">header =</span> <span class="kw"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardHeader.html">dashboardHeader</a></span>(),</a>
+<a class="sourceLine" id="cb7-42" data-line-number="42">    <span class="dt">sidebar =</span> <span class="kw"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardSidebar.html">dashboardSidebar</a></span>(),</a>
+<a class="sourceLine" id="cb7-43" data-line-number="43">    <span class="dt">body =</span> <span class="kw"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html">dashboardBody</a></span>(</a>
+<a class="sourceLine" id="cb7-44" data-line-number="44">      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/include.html">includeCSS</a></span>(</a>
+<a class="sourceLine" id="cb7-45" data-line-number="45">        <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"app/www/custom.css"</span>, <span class="dt">package =</span> <span class="st">"dccvalidator"</span>)</a>
+<a class="sourceLine" id="cb7-46" data-line-number="46">      ),</a>
+<a class="sourceLine" id="cb7-47" data-line-number="47">      <span class="kw"><a href="../reference/results_boxes.html">results_boxes_ui</a></span>(<span class="st">"Validation Results"</span>)</a>
+<a class="sourceLine" id="cb7-48" data-line-number="48">    )</a>
+<a class="sourceLine" id="cb7-49" data-line-number="49">  )</a>
+<a class="sourceLine" id="cb7-50" data-line-number="50">}</a>
+<a class="sourceLine" id="cb7-51" data-line-number="51"></a>
+<a class="sourceLine" id="cb7-52" data-line-number="52"><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(ui, server)</a></code></pre></div>
+</div>
 </div>
   </div>
 
@@ -162,7 +315,8 @@ parent: "syn20400157"</code></pre>
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#configuration-options">Configuration options</a></li>
+<li><a href="#customizing-the-shiny-application">Customizing the Shiny application</a></li>
+      <li><a href="#extending-dccvalidator">Extending dccvalidator</a></li>
       </ul>
 </div>
       </div>
