@@ -104,9 +104,9 @@
 <p>We’ve built the dccvalidator tool to streamline the process of data validation and QA/QC. As the AMP-AD Knowledge Portal has grown to 50+ studies and over 70,000 data files, we’ve realized a need to be more standardized in our approaches to data curation. Thus, we built an application that performs many of the routine data quality checks we previously conducted by hand, with the hopes that it will help you, the data contributor, get your data checked, validated, and shared more easily and quickly.</p>
 <p>The application can be found at <a href="https://shinypro.synapse.org/users/kwoo/dccvalidator-app/" class="uri">https://shinypro.synapse.org/users/kwoo/dccvalidator-app/</a></p>
 </div>
-<div id="instructions" class="section level1">
+<div id="requirements" class="section level1">
 <h1 class="hasAnchor">
-<a href="#instructions" class="anchor"></a>Instructions</h1>
+<a href="#requirements" class="anchor"></a>Requirements</h1>
 <p>To use this application you must:</p>
 <ol style="list-style-type: decimal">
 <li>Be logged in to Synapse in your browser</li>
@@ -115,34 +115,50 @@
 <li>Be a member of the AMP-AD consortium team</li>
 </ol>
 <p>Some portions of the app submit data to Synapse. This allows curators at Sage to troubleshoot issues if needed; no one outside the Sage curation team will be able to download the data.</p>
+</div>
+<div id="instructions" class="section level1">
+<h1 class="hasAnchor">
+<a href="#instructions" class="anchor"></a>Instructions</h1>
+<p>This topic has a general overview of the data contribution process and detailed instructions for each step, including uploading documentation, metadata requirements, validating and reviewing the metadata, and uploading the dataset.</p>
+<div id="general-process-overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#general-process-overview" class="anchor"></a>General Process Overview</h2>
+<ol style="list-style-type: decimal">
+<li>Contact the AMP-AD team to discuss the study and the expected data. Receive staging folder synIDs for each expected dataset.</li>
+<li>Upload documentation and validate metadata + manifest files in <a href="https://shinypro.synapse.org/users/kwoo/dccvalidator-app/">dccvalidator</a>.</li>
+<li>Contact the AMP-AD team when all files pass validation. The team will verify items not checked by the dccvalidator. Receive permissions to upload data to the staging folder.</li>
+<li>Use the validated manifest to upload the data with <code>syncToSynapse</code> (see <a href="https://docs.synapse.org/articles/uploading_in_bulk.html">Synapse documentation</a> for uploading data in bulk).</li>
+<li>Contact the AMP-AD team. The team will do the final verifications before releasing the data.</li>
+</ol>
+</div>
 <div id="documentation-upload" class="section level2">
 <h2 class="hasAnchor">
-<a href="#documentation-upload" class="anchor"></a>Documentation upload</h2>
+<a href="#documentation-upload" class="anchor"></a>Documentation Upload</h2>
 <p>Each study in AMP-AD has accompanying <a href="https://adknowledgeportal.synapse.org/#/Explore/Studies?Study=syn8391648">documentation in the portal</a>. You can submit your documentation through the dccvalidator app on the Documentation page. There should be a study description for the whole study, and an assay description for each of the assays that was performed. These can be in a single file, or you can upload multiple files to the assay description section. <img src="../man/figures/amp-documentation.png" alt="A screenshot of a website with instructions on how to provide documentation of a study, and a space to upload documentation files"></p>
 </div>
 <div id="data-validation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data-validation" class="anchor"></a>Data validation</h2>
+<a href="#data-validation" class="anchor"></a>Data Validation</h2>
 <div id="metadata-requirements" class="section level3">
 <h3 class="hasAnchor">
-<a href="#metadata-requirements" class="anchor"></a>Metadata requirements</h3>
+<a href="#metadata-requirements" class="anchor"></a>Metadata Requirements</h3>
 <p>Each study should include metadata that would help a new researcher understand and reuse the data. In most cases, we will expect 4 files:</p>
 <ol style="list-style-type: decimal">
 <li>
-<strong>Individual metadata</strong> describing each individual in the study</li>
+<strong>Individual metadata</strong> a csv file describing each individual in the study.</li>
 <li>
-<strong>Biospecimen metadata</strong> describing the specimens that were collected</li>
+<strong>Biospecimen metadata</strong> a csv file describing the specimens that were collected.</li>
 <li>
-<strong>Assay metadata</strong> describing the assay that was performed. If multiple assays were part of the study, there will be one assay file for each.</li>
-<li>A <strong>manifest</strong> listing each file that will be uploaded. You will use this file to upload your data after it has been validated and approved.</li>
+<strong>Assay metadata</strong> a csv file describing the assay that was performed. If multiple assays were part of the study, there will be one assay file for each.</li>
+<li>A <strong>manifest</strong> listing each file that will be uploaded. You will use this file to upload your data after it has been validated and approved. The manifest should be in tsv (tab-delimited text) format.</li>
 </ol>
 <p>We provide templates for all of the metadata files within the portal: <a href="https://www.synapse.org/#!Synapse:syn18512044" class="uri">https://www.synapse.org/#!Synapse:syn18512044</a></p>
-<p>You can download these files, fill out the first tab, and save it as a .csv file. The other tabs exist to describe the variables and allowed values in the template. If you do not have any data for some of the columns, you can leave them blank (but do not remove the column header).</p>
+<p>You can download these files, fill out the first tab, and save it as a .csv or .tsv file. The other tabs exist to describe the variables and allowed values in the template. If you do not have any data for some of the columns, you can leave them blank (but do not remove the column header).</p>
 <p>If you don’t see a template for the assay(s) in your study, or if not all of the metadata types above seem relevant to your study, please get in touch with us at <a href="mailto:AMPAD_SageAdmin@synapse.org" class="email">AMPAD_SageAdmin@synapse.org</a>.</p>
 </div>
-<div id="validating-metadata" class="section level3">
+<div id="validating-the-metadata-and-manifest" class="section level3">
 <h3 class="hasAnchor">
-<a href="#validating-metadata" class="anchor"></a>Validating metadata</h3>
+<a href="#validating-the-metadata-and-manifest" class="anchor"></a>Validating the Metadata and Manifest</h3>
 <p>The data validation portion of the app allows you to upload metadata files (as .csv) and the manifest (as .tsv or .txt) and view the results of a series of automated checks.</p>
 <p>Examples of the types of checks we perform are:</p>
 <ul>
@@ -154,13 +170,16 @@
 </div>
 <div id="viewing-data-summary" class="section level3">
 <h3 class="hasAnchor">
-<a href="#viewing-data-summary" class="anchor"></a>Viewing data summary</h3>
-<p>We also provide a summary of the files you have uploaded, showing the number of individuals, specimens, and files. We visualize the data in each column by its data type to help spot unexpected missing values. <img src="../man/figures/amp-summary.png" alt="A screenshot showing a summary of several data files uploaded, including how many specimens, individuals, and data files were included, and a breakdown of the types of data in the file"></p>
+<a href="#viewing-data-summary" class="anchor"></a>Viewing Data Summary</h3>
+<p>We also provide a summary of the files you have uploaded, showing the number of individuals, specimens, and files. We visualize the data in each column by its data type to help spot unexpected missing values.</p>
+<div class="figure">
+<img src="../man/figures/amp-summary.png" alt=""><p class="caption">A screenshot showing a summary of several data files uploaded, including how many specimens, individuals, and data files were included, and a breakdown of the types of data in the file</p>
+</div>
 </div>
 </div>
 <div id="uploading-data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#uploading-data" class="anchor"></a>Uploading data</h2>
+<a href="#uploading-data" class="anchor"></a>Uploading Data</h2>
 <p>Once data has passed validation, and the AMP-AD data curators permit edit permissions to the staging folder for your study, you will use your newly created manifest file to upload your data and metadata using <code>syncToSynapse</code>. You can execute <code>syncToSynapse</code> in the <a href="https://python-docs.synapse.org/build/html/synapseutils.html#synapseutils.sync.syncToSynapse">Python client</a> or <a href="https://github.com/Sage-Bionetworks/synapserutils#upload-data-in-bulk">R client</a>. For getting started with the Synapse programmatic clients, please visit our <a href="https://docs.synapse.org/articles/api_documentation.html">Synapse docs</a>.</p>
 </div>
 </div>
