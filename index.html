@@ -96,7 +96,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#dccvalidator" class="anchor"></a>dccvalidator</h1></div>
 
-<p>dccvalidator is a package and Shiny app to perform data validation and QA/QC. Itâs used in the <a href="https://ampadportal.org/">AMP-AD</a> and <a href="http://www.psychencode.org">PsychENCODE</a> consortia to validate data prior to data releases.</p>
+<p>dccvalidator is a package and Shiny app to perform data validation and QA/QC. It’s used in the <a href="https://ampadportal.org/">AMP-AD</a> and <a href="http://www.psychencode.org">PsychENCODE</a> consortia to validate data prior to data releases.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -104,7 +104,7 @@
 <div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"dccvalidator"</span>)</pre></div>
 <p>To install the development version from GitHub, run:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">install_github</span>(<span class="st">"Sage-Bionetworks/dccvalidator"</span>)</pre></div>
-<p>Many functions in dccvalidator use reticulate and the <a href="https://pypi.org/project/synapseclient/">Synapse Python client</a>. See the <a href="https://rstudio.github.io/reticulate/#python-version">reticulate documentation</a> for information on how to set R to use a specific version of Python if you donât want to use the default Python installation on your machine. Whichever Python installation you choose should have synapseclient installed.</p>
+<p>Many functions in dccvalidator use reticulate and the <a href="https://pypi.org/project/synapseclient/">Synapse Python client</a>. See the <a href="https://rstudio.github.io/reticulate/#python-version">reticulate documentation</a> for information on how to set R to use a specific version of Python if you don’t want to use the default Python installation on your machine. Whichever Python installation you choose should have synapseclient installed.</p>
 <p>Because dccvalidator uses reticulate, it is not compatible with the <a href="https://r-docs.synapse.org/">synapser</a> package..</p>
 </div>
 <div id="check-data" class="section level2">
@@ -116,7 +116,7 @@
 <li>Column names match those of an associated metadata template</li>
 <li>Certain columns are not empty</li>
 <li>Certain columns are complete</li>
-<li>Identifiers match between two metadata files (e.g.Â all individuals in one file are also present in another)</li>
+<li>Identifiers match between two metadata files (e.g. all individuals in one file are also present in another)</li>
 <li>Check that identifiers are unique within a file</li>
 </ul>
 </div>
@@ -124,7 +124,7 @@
 <div id="data-submission-validation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#data-submission-validation" class="anchor"></a>Data submission validation</h1>
-<p>This package contains a Shiny app to validate manifests and metadata for AMP-AD studies. It uses the dccvalidator package to check for common data quality issues and gives realtime feedback to the data contributor on errors that need to be fixed. The reporting UI is heavily inspired by the <a href="https://knb.ecoinformatics.org/quality/s=knb.suite.1/doi%3A10.5063%2FF12V2D1V">MetaDIG projectâs metadata quality reports</a>.</p>
+<p>This package contains a Shiny app to validate manifests and metadata for AMP-AD studies. It uses the dccvalidator package to check for common data quality issues and gives realtime feedback to the data contributor on errors that need to be fixed. The reporting UI is heavily inspired by the <a href="https://knb.ecoinformatics.org/quality/s=knb.suite.1/doi%3A10.5063%2FF12V2D1V">MetaDIG project’s metadata quality reports</a>.</p>
 <p>The application also allows users to submit documentation of their study, a description of the methods used, etc.</p>
 <p>See the <a href="https://sage-bionetworks.github.io/dccvalidator/articles/customizing-dccvalidator.html">customizing dccvalidator</a> vignette for information on how to spin up a customized version of the application</p>
 </div>
@@ -182,7 +182,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>
