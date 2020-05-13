@@ -197,7 +197,7 @@ least three columns: <code>key</code>, <code>value</code>, and <code>columnType<
 )
 <span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"rnaSeq"</span>)
-<span class='fu'>valid_annotation_keys</span>(<span class='no'>dat1</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; integer(0)</div><div class='input'><span class='fu'>valid_annotation_keys</span>(<span class='no'>dat2</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; integer(0)</div></pre>
+<span class='fu'>valid_annotation_keys</span>(<span class='no'>dat1</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; character(0)</div><div class='input'><span class='fu'>valid_annotation_keys</span>(<span class='no'>dat2</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; [1] "assay"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

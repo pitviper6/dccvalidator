@@ -210,8 +210,7 @@ as valid (see <code><a href='can_coerce.html'>can_coerce()</a></code>).</p>
 <span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"not a valid assay"</span>)
 <span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"rnaSeq"</span>)
 <span class='fu'>check_annotation_values</span>(<span class='no'>dat1</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
-#&gt; Some annotation values are invalid</div><div class='input'><span class='fu'>check_annotation_values</span>(<span class='no'>dat2</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; </span><span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
-#&gt; Some annotation values are invalid</div><div class='input'>
+#&gt; Some annotation values are invalid</div><div class='input'><span class='fu'>check_annotation_values</span>(<span class='no'>dat2</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; &lt;check_pass: All annotation values are valid&gt;</div><div class='input'>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>syn</span> <span class='kw'>&lt;-</span> <span class='no'>synapse</span>$<span class='fu'>Synapse</span>()
 <span class='no'>syn</span>$<span class='fu'>login</span>()
