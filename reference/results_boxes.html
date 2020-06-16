@@ -148,9 +148,9 @@ UI, attaching titles and populating
 the validation results.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>results_boxes_ui</span>(<span class='no'>id</span>)
+    <pre class="usage"><span class='fu'>results_boxes_ui</span>(<span class='kw'>id</span>)
 
-<span class='fu'>results_boxes_server</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='no'>results</span>)</pre>
+<span class='fu'>results_boxes_server</span>(<span class='kw'>input</span>, <span class='kw'>output</span>, <span class='kw'>session</span>, <span class='kw'>results</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,37 +185,37 @@ results.</p></td>
     <p>The html UI for the module.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shiny"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shinydashboard"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='http://shiny.rstudio.com'>"shiny"</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='http://rstudio.github.io/shinydashboard'>"shinydashboard"</a></span>)
 
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+<span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input</span>, <span class='kw'>output</span>) {
   <span class='co'># Create some sample results</span>
-  <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='fu'><a href='check_pass.html'>check_pass</a></span>(<span class='kw'>msg</span> <span class='kw'>=</span> <span class='st'>"All good!"</span>, <span class='kw'>behavior</span> <span class='kw'>=</span> <span class='st'>"Values should be &gt;10"</span>),
-    <span class='fu'><a href='check_pass.html'>check_fail</a></span>(
-      <span class='kw'>msg</span> <span class='kw'>=</span> <span class='st'>"Some values are too small"</span>,
-      <span class='kw'>behavior</span> <span class='kw'>=</span> <span class='st'>"Values should be &gt; 10"</span>,
-      <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5.5</span>, <span class='fl'>1.3</span>)
+  <span class='kw'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='fu'>check_pass</span>(msg = <span class='st'>"All good!"</span>, behavior = <span class='st'>"Values should be &gt;10"</span>),
+    <span class='fu'>check_fail</span>(
+      msg = <span class='st'>"Some values are too small"</span>,
+      behavior = <span class='st'>"Values should be &gt; 10"</span>,
+      data = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5.5</span>, <span class='fl'>1.3</span>)
     )
   )
   <span class='co'># Show results in boxes</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='no'>results_boxes_server</span>, <span class='st'>"Validation Results"</span>, <span class='no'>res</span>)
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='kw'>results_boxes_server</span>, <span class='st'>"Validation Results"</span>, <span class='kw'>res</span>)
 }
 
-<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>request</span>) {
+<span class='kw'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>request</span>) {
   <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardPage.html'>dashboardPage</a></span>(
-    <span class='kw'>header</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardHeader.html'>dashboardHeader</a></span>(),
-    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardSidebar.html'>dashboardSidebar</a></span>(),
-    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html'>dashboardBody</a></span>(
+    header = <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardHeader.html'>dashboardHeader</a></span>(),
+    sidebar = <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardSidebar.html'>dashboardSidebar</a></span>(),
+    body = <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html'>dashboardBody</a></span>(
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/include.html'>includeCSS</a></span>(
-        <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"app/www/custom.css"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"dccvalidator"</span>)
+        <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"app/www/custom.css"</span>, package = <span class='st'>"dccvalidator"</span>)
       ),
       <span class='fu'>results_boxes_ui</span>(<span class='st'>"Validation Results"</span>)
     )
   )
 }
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

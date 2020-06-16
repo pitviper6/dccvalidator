@@ -140,19 +140,19 @@ file, or Synapse file view." />
 file, or Synapse file view.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>valid_annotation_values</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_values.html'>valid_annotation_values</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for `NULL`</span>
-<span class='fu'>valid_annotation_values</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_values.html'>valid_annotation_values</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for synapseclient.entity.File</span>
-<span class='fu'>valid_annotation_values</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>syn</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_values.html'>valid_annotation_values</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>syn</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>valid_annotation_values</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_values.html'>valid_annotation_values</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for synapseclient.table.CsvFileTable</span>
-<span class='fu'>valid_annotation_values</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_values.html'>valid_annotation_values</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,7 +168,7 @@ least three columns: <code>key</code>, <code>value</code>, and <code>columnType<
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional options to <code><a href='check_values.html'>check_values()</a></code></p></td>
+      <td><p>Additional options to <code><a href='https://rdrr.io/pkg/dccvalidator/man/check_values.html'>check_values()</a></code></p></td>
     </tr>
     <tr>
       <th>syn</th>
@@ -190,14 +190,14 @@ least three columns: <code>key</code>, <code>value</code>, and <code>columnType<
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>annots</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"assay"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"species"</span>),
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rnaSeq"</span>, <span class='st'>"fastq"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"Human"</span>),
-  <span class='kw'>columnType</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>annots</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  key = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"assay"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"species"</span>),
+  value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rnaSeq"</span>, <span class='st'>"fastq"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"Human"</span>),
+  columnType = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>)
 )
-<span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"not a valid assay"</span>)
-<span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"rnaSeq"</span>)
-<span class='fu'>valid_annotation_values</span>(<span class='no'>dat1</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; named list()</div><div class='input'><span class='fu'>valid_annotation_values</span>(<span class='no'>dat2</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; $assay
+<span class='kw'>dat1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"not a valid assay"</span>)
+<span class='kw'>dat2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"rnaSeq"</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_values.html'>valid_annotation_values</a></span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; named list()</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_values.html'>valid_annotation_values</a></span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; $assay
 #&gt; [1] "rnaSeq"
 #&gt; </div></pre>
   </div>

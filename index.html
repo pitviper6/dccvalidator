@@ -101,9 +101,13 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install dccvalidator from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"dccvalidator"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"dccvalidator"</span>)
+</pre></div>
 <p>To install the development version from GitHub, run:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">install_github</span>(<span class="st">"Sage-Bionetworks/dccvalidator"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"Sage-Bionetworks/dccvalidator"</span>)
+</pre></div>
 <p>Many functions in dccvalidator use reticulate and the <a href="https://pypi.org/project/synapseclient/">Synapse Python client</a>. See the <a href="https://rstudio.github.io/reticulate/#python-version">reticulate documentation</a> for information on how to set R to use a specific version of Python if you don’t want to use the default Python installation on your machine. Whichever Python installation you choose should have synapseclient installed.</p>
 <p>Because dccvalidator uses reticulate, it is not compatible with the <a href="https://r-docs.synapse.org/">synapser</a> package..</p>
 </div>

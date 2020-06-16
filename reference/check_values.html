@@ -139,15 +139,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>check_values</span>(
-  <span class='no'>x</span>,
-  <span class='no'>annotations</span>,
-  <span class='kw'>whitelist_keys</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>whitelist_values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"All annotation values are valid"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Some annotation values are invalid"</span>,
-  <span class='kw'>return_valid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>annots_link</span> <span class='kw'>=</span> <span class='st'>"https://shinypro.synapse.org/users/nsanati/annotationUI/"</span>,
-  <span class='no'>syn</span>
+  <span class='kw'>x</span>,
+  <span class='kw'>annotations</span>,
+  whitelist_keys = <span class='kw'>NULL</span>,
+  whitelist_values = <span class='kw'>NULL</span>,
+  success_msg = <span class='st'>"All annotation values are valid"</span>,
+  fail_msg = <span class='st'>"Some annotation values are invalid"</span>,
+  return_valid = <span class='fl'>FALSE</span>,
+  annots_link = <span class='st'>"https://shinypro.synapse.org/users/nsanati/annotationUI/"</span>,
+  <span class='kw'>syn</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -205,17 +205,17 @@ of invalid values. If <code>return_valid = TRUE</code>: a named list of the vali
 annotation keys and values.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>annots</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>),
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"txt"</span>, <span class='st'>"csv"</span>),
-  <span class='kw'>columnType</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+    <pre class="examples"><div class='input'><span class='kw'>annots</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  key = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>),
+  value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"txt"</span>, <span class='st'>"csv"</span>),
+  columnType = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>),
+  stringsAsFactors = <span class='fl'>FALSE</span>
 )
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>fileFormat</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"wrong"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"wrong again"</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+<span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  fileFormat = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"wrong"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"wrong again"</span>),
+  stringsAsFactors = <span class='fl'>FALSE</span>
 )
-<span class='fu'>check_values</span>(<span class='no'>dat</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+<span class='fu'>check_values</span>(<span class='kw'>dat</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
 #&gt; Some annotation values are invalid</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

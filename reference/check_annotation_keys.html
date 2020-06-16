@@ -139,22 +139,22 @@ annotation keys; valid_annotation_keys() returns valid annotation keys." />
     <div class="ref-description">
     <p>Checks that all annotation keys on a file, in a file view, or in a data frame
 are valid annotations. <code>check_annotation_keys()</code> returns any invalid
-annotation keys; <code><a href='valid_annotation_keys.html'>valid_annotation_keys()</a></code> returns <em>valid</em> annotation keys.</p>
+annotation keys; <code>valid_annotation_keys()</code> returns <em>valid</em> annotation keys.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_annotation_keys</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>check_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for `NULL`</span>
-<span class='fu'>check_annotation_keys</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>...</span>)
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for synapseclient.entity.File</span>
-<span class='fu'>check_annotation_keys</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>syn</span>, <span class='no'>...</span>)
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>syn</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>check_annotation_keys</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>...</span>)
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for synapseclient.table.CsvFileTable</span>
-<span class='fu'>check_annotation_keys</span>(<span class='no'>x</span>, <span class='no'>annotations</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,7 +170,7 @@ least three columns: <code>key</code>, <code>value</code>, and <code>columnType<
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters passed to <code><a href='check_keys.html'>check_keys()</a></code></p></td>
+      <td><p>Additional parameters passed to <code>check_keys()</code></p></td>
     </tr>
     <tr>
       <th>syn</th>
@@ -193,36 +193,36 @@ dictionary. Erroneous keys are included as data within the object.</p>
 </ul>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='valid_annotation_keys.html'>valid_annotation_keys()</a></code></p></div>
+    <div class='dont-index'><p><code>valid_annotation_keys()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>annots</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"assay"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"species"</span>),
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rnaSeq"</span>, <span class='st'>"fastq"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"Human"</span>),
-  <span class='kw'>columnType</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>annots</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  key = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"assay"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"species"</span>),
+  value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rnaSeq"</span>, <span class='st'>"fastq"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"Human"</span>),
+  columnType = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>)
 )
-<span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"rnaSeq"</span>)
-<span class='fu'>check_annotation_keys</span>(<span class='no'>dat1</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
-#&gt; Some annotation keys are invalid</div><div class='input'><span class='fu'>check_annotation_keys</span>(<span class='no'>dat2</span>, <span class='no'>annots</span>)</div><div class='output co'>#&gt; &lt;check_pass: All annotation keys are valid&gt;</div><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>syn</span> <span class='kw'>&lt;-</span> <span class='no'>synapse</span>$<span class='fu'>Synapse</span>()
-<span class='no'>syn</span>$<span class='fu'>login</span>()
-<span class='no'>annots</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_synapse_annotations.html'>get_synapse_annotations</a></span>(<span class='kw'>syn</span> <span class='kw'>=</span> <span class='no'>syn</span>)
-<span class='no'>my_file</span> <span class='kw'>&lt;-</span> <span class='no'>syn</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"syn11931757"</span>, <span class='kw'>downloadFile</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>check_annotation_keys</span>(<span class='no'>my_file</span>, <span class='no'>annots</span>, <span class='no'>syn</span>)
+<span class='kw'>dat1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x = <span class='fl'>1</span>)
+<span class='kw'>dat2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"rnaSeq"</span>)
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+#&gt; Some annotation keys are invalid</div><div class='input'><span class='fu'>check_annotation_keys</span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; &lt;check_pass: All annotation keys are valid&gt;</div><div class='input'>
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>syn</span> <span class='op'>&lt;-</span> <span class='kw'>synapse</span><span class='op'>$</span><span class='fu'>Synapse</span>()
+<span class='kw'>syn</span><span class='op'>$</span><span class='fu'>login</span>()
+<span class='kw'>annots</span> <span class='op'>&lt;-</span> <span class='fu'>get_synapse_annotations</span>(syn = <span class='kw'>syn</span>)
+<span class='kw'>my_file</span> <span class='op'>&lt;-</span> <span class='kw'>syn</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"syn11931757"</span>, downloadFile = <span class='fl'>FALSE</span>)
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>my_file</span>, <span class='kw'>annots</span>, <span class='kw'>syn</span>)
 
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>non_annotation</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"rnaSeq"</span>)
-<span class='fu'>check_annotation_keys</span>(<span class='no'>dat</span>, <span class='no'>annots</span>)
+<span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(non_annotation = <span class='fl'>5</span>, assay = <span class='st'>"rnaSeq"</span>)
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>dat</span>, <span class='kw'>annots</span>)
 
-<span class='no'>fv</span> <span class='kw'>&lt;-</span> <span class='no'>syn</span>$<span class='fu'>tableQuery</span>(<span class='st'>"SELECT * FROM syn17020234"</span>)
-<span class='fu'>check_annotation_keys</span>(<span class='no'>fv</span>, <span class='no'>annots</span>)
+<span class='kw'>fv</span> <span class='op'>&lt;-</span> <span class='kw'>syn</span><span class='op'>$</span><span class='fu'>tableQuery</span>(<span class='st'>"SELECT * FROM syn17020234"</span>)
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>fv</span>, <span class='kw'>annots</span>)
 
 <span class='co'># If you don't specify an annotations data frame, these functions will</span>
 <span class='co'># download annotations automatically using `get_synapse_annotations()` (must</span>
 <span class='co'># be logged in to Synapse)</span>
-<span class='no'>my_file</span> <span class='kw'>&lt;-</span> <span class='no'>syn</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"syn11931757"</span>, <span class='kw'>downloadFile</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>check_annotation_keys</span>(<span class='no'>my_file</span>, <span class='kw'>syn</span> <span class='kw'>=</span> <span class='no'>syn</span>)
+<span class='kw'>my_file</span> <span class='op'>&lt;-</span> <span class='kw'>syn</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"syn11931757"</span>, downloadFile = <span class='fl'>FALSE</span>)
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>my_file</span>, syn = <span class='kw'>syn</span>)
 }</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

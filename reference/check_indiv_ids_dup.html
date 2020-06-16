@@ -139,17 +139,17 @@
     </div>
 
     <pre class="usage"><span class='fu'>check_indiv_ids_dup</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>empty_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>""</span>),
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"Individual IDs are unique"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Duplicate individual IDs found"</span>
+  <span class='kw'>data</span>,
+  empty_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>""</span>),
+  success_msg = <span class='st'>"Individual IDs are unique"</span>,
+  fail_msg = <span class='st'>"Duplicate individual IDs found"</span>
 )
 
 <span class='fu'>check_specimen_ids_dup</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>empty_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>""</span>),
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"Specimen IDs are unique"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Duplicate specimen IDs found"</span>
+  <span class='kw'>data</span>,
+  empty_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>""</span>),
+  success_msg = <span class='st'>"Specimen IDs are unique"</span>,
+  fail_msg = <span class='st'>"Duplicate specimen IDs found"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -180,14 +180,14 @@
 individual metadata file are unique.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>dat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>individualID</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>, <span class='st'>"z"</span>))
-<span class='fu'>check_indiv_ids_dup</span>(<span class='no'>dat1</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+    <pre class="examples"><div class='input'><span class='kw'>dat1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(individualID = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>, <span class='st'>"z"</span>))
+<span class='fu'>check_indiv_ids_dup</span>(<span class='kw'>dat1</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
 #&gt; Duplicate individual IDs found</div><div class='input'>
-<span class='no'>dat2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>individualID</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>),
-  <span class='kw'>specimenID</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"a"</span>, <span class='st'>"b"</span>)
+<span class='kw'>dat2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  individualID = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>),
+  specimenID = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"a"</span>, <span class='st'>"b"</span>)
 )
-<span class='fu'>check_specimen_ids_dup</span>(<span class='no'>dat2</span>)</div><div class='output co'>#&gt; </span><span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+<span class='fu'>check_specimen_ids_dup</span>(<span class='kw'>dat2</span>)</div><div class='output co'>#&gt; </span><span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
 #&gt; Duplicate specimen IDs found</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

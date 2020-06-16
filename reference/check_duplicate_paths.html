@@ -141,9 +141,9 @@ This function checks if any paths are duplicated.</p>
     </div>
 
     <pre class="usage"><span class='fu'>check_duplicate_paths</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"No duplicate file paths detected"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Duplicate file paths detected"</span>
+  <span class='kw'>data</span>,
+  success_msg = <span class='st'>"No duplicate file paths detected"</span>,
+  fail_msg = <span class='st'>"Duplicate file paths detected"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -177,11 +177,11 @@ typically run from a Shiny app without access to the user's filesystem, it is
 not possible to detect every possible duplicate path.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>manifest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"/path/to/file.txt"</span>, <span class='st'>"/path/to/file.txt"</span>),
-  <span class='kw'>parent</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"syn123"</span>, <span class='st'>"syn123"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>manifest</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  path = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"/path/to/file.txt"</span>, <span class='st'>"/path/to/file.txt"</span>),
+  parent = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"syn123"</span>, <span class='st'>"syn123"</span>)
 )
-<span class='fu'>check_duplicate_paths</span>(<span class='no'>manifest</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+<span class='fu'>check_duplicate_paths</span>(<span class='kw'>manifest</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
 #&gt; Duplicate file paths detected</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

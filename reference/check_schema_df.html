@@ -141,10 +141,10 @@ the given schema.</p>
     </div>
 
     <pre class="usage"><span class='fu'>check_schema_df</span>(
-  <span class='no'>df</span>,
-  <span class='no'>schema</span>,
-  <span class='kw'>success_msg</span> <span class='kw'>=</span> <span class='st'>"Data is valid against the schema"</span>,
-  <span class='kw'>fail_msg</span> <span class='kw'>=</span> <span class='st'>"Data is invalid against the schema"</span>
+  <span class='kw'>df</span>,
+  <span class='kw'>schema</span>,
+  success_msg = <span class='st'>"Data is valid against the schema"</span>,
+  fail_msg = <span class='st'>"Data is invalid against the schema"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -175,13 +175,13 @@ containing a schema.</p></td>
 schema.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"jsonvalidate"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>&amp;</span>
-      <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"jsonlite"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>1</span>, <span class='fl'>NA</span>),
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='st'>"foo"</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"jsonvalidate"</span>, quietly = <span class='fl'>TRUE</span>) <span class='op'>&amp;</span>
+      <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"jsonlite"</span>, quietly = <span class='fl'>TRUE</span>)) {
+<span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  x = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>1</span>, <span class='fl'>NA</span>),
+  y = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='st'>"foo"</span>)
 )
-<span class='no'>schema</span> <span class='kw'>&lt;-</span> <span class='st'>'{
+<span class='kw'>schema</span> <span class='op'>&lt;-</span> <span class='st'>'{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "properties": {
     "x": {
@@ -193,8 +193,20 @@ schema.</p>
   },
   "required": ["x", "y"]
 }
-'</span>
-<span class='fu'>check_schema_df</span>(<span class='no'>dat</span>, <span class='no'>schema</span>)
+'</span>chema <- '{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "properties": {
+    "x": {
+      "type": "integer"
+    },
+    "y": {
+      "type": "integer"
+    }
+  },
+  "required": ["x", "y"]
+}
+'
+<span class='fu'>check_schema_df</span>(<span class='kw'>dat</span>, <span class='kw'>schema</span>)
 }</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
 #&gt; Data is invalid against the schema</div></span></pre>
   </div>

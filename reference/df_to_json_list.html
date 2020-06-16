@@ -139,10 +139,10 @@ check_schema_df()." />
     <div class="ref-description">
     <p>Given a data frame, converts each row to a JSON blob and returns the results
 in a list, to make it easier to iteratively validate data with
-<code><a href='check_schema_df.html'>check_schema_df()</a></code>.</p>
+<code>check_schema_df()</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>df_to_json_list</span>(<span class='no'>df</span>)</pre>
+    <pre class="usage"><span class='fu'>df_to_json_list</span>(<span class='kw'>df</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,11 +161,11 @@ in a list, to make it easier to iteratively validate data with
     <div class='dont-index'><p>check_schema</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"jsonlite"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>1L</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"jsonlite"</span>, quietly = <span class='fl'>TRUE</span>)) {
+<span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  x = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>1L</span>)
 )
-<span class='fu'>df_to_json_list</span>(<span class='no'>dat</span>)
+<span class='fu'>df_to_json_list</span>(<span class='kw'>dat</span>)
 }</div><div class='output co'>#&gt; [[1]]
 #&gt; {} 
 #&gt; 
