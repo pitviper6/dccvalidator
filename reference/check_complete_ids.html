@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check column names against their corresponding template — check_col_names • dccvalidator</title>
+<title>Check data against existing IDs — check_complete_ids • dccvalidator</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,11 @@
 
 
 
-<meta property="og:title" content="Check column names against their corresponding template — check_col_names" />
-<meta property="og:description" content="Check column names against their corresponding template" />
+<meta property="og:title" content="Check data against existing IDs — check_complete_ids" />
+<meta property="og:description" content="If data is an addition to an existing study, check the specimen and
+individual IDs against the master table of existing IDs. Contributors should
+upload the complete metadata files, so all IDs in the master table should be
+present in the uploaded data." />
 
 
 
@@ -132,53 +135,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check column names against their corresponding template</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Sage-Bionetworks/dccvalidator/blob/master/R/check-col-names.R'><code>R/check-col-names.R</code></a></small>
-    <div class="hidden name"><code>check_col_names.Rd</code></div>
+    <h1>Check data against existing IDs</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Sage-Bionetworks/dccvalidator/blob/master/R/check-complete-ids.R'><code>R/check-complete-ids.R</code></a></small>
+    <div class="hidden name"><code>check_complete_ids.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Check column names against their corresponding template</p>
+    <p>If data is an addition to an existing study, check the specimen and
+individual IDs against the master table of existing IDs. Contributors should
+upload the complete metadata files, so all IDs in the master table should be
+present in the uploaded data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_col_names</span>(
+    <pre class="usage"><span class='fu'>check_complete_ids</span>(
   <span class='kw'>data</span>,
-  <span class='kw'>template</span>,
-  success_msg = <span class='kw'>NULL</span>,
-  fail_msg = <span class='kw'>NULL</span>,
-  behavior = <span class='kw'>NULL</span>
-)
-
-<span class='fu'>check_cols_manifest</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>id</span>,
-  success_msg = <span class='st'>"All manifest columns present"</span>,
-  fail_msg = <span class='st'>"Missing columns in the manifest"</span>,
-  <span class='kw'>...</span>
-)
-
-<span class='fu'>check_cols_individual</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>id</span>,
-  success_msg = <span class='st'>"All individual metadata columns present"</span>,
-  fail_msg = <span class='st'>"Missing columns in the individual metadata file"</span>,
-  <span class='kw'>...</span>
-)
-
-<span class='fu'>check_cols_assay</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>id</span>,
-  success_msg = <span class='st'>"All assay metadata columns present"</span>,
-  fail_msg = <span class='st'>"Missing columns in the assay metadata file"</span>,
-  <span class='kw'>...</span>
-)
-
-<span class='fu'>check_cols_biospecimen</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>id</span>,
-  success_msg = <span class='st'>"All biospecimen columns present"</span>,
-  fail_msg = <span class='st'>"Missing columns in the biospecimen metadata file"</span>,
-  <span class='kw'>...</span>
+  <span class='kw'>samples_table</span>,
+  <span class='kw'>study</span>,
+  id_type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"individualID"</span>, <span class='st'>"specimenID"</span>),
+  assay = <span class='kw'>NULL</span>,
+  success_msg = <span class='st'>"Data includes a complete set of IDs"</span>,
+  fail_msg = <span class='st'>"Some IDs are missing from the data"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -186,13 +162,28 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Data frame to check against template (manifest, individual
-metadata, or assay metadata)</p></td>
+      <td><p>Data frame of data to be checked</p></td>
     </tr>
     <tr>
-      <th>template</th>
-      <td><p>Character vector of column names from the template to check
-against</p></td>
+      <th>samples_table</th>
+      <td><p>Data frame containing master table of all individual and
+specimen IDs per study</p></td>
+    </tr>
+    <tr>
+      <th>study</th>
+      <td><p>Name of the study</p></td>
+    </tr>
+    <tr>
+      <th>id_type</th>
+      <td><p><code>"individualID"</code> or <code>"specimenID"</code></p></td>
+    </tr>
+    <tr>
+      <th>assay</th>
+      <td><p>String naming the assay. If provided, will filter <code>master_table</code>
+to the specific study and assay. This is useful when validating assay
+metadata in studies wheere multiple assays with different specimens were
+conducted. If <code>NULL</code> (the default), will look at all IDs for the study,
+regardless of assay.</p></td>
     </tr>
     <tr>
       <th>success_msg</th>
@@ -202,41 +193,38 @@ against</p></td>
       <th>fail_msg</th>
       <td><p>Message indicating the check failed.</p></td>
     </tr>
-    <tr>
-      <th>behavior</th>
-      <td><p>The intended behavior of the test</p></td>
-    </tr>
-    <tr>
-      <th>id</th>
-      <td><p>Synapse ID of the template to check against</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments passed to syn$get()</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A condition object indicating whether the required columns were
-present (<code>"check_pass"</code>) or absent (<code>"check_fail"</code>).</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/dccvalidator/man/get_template.html'>dccvalidator::get_template()</a></code></p></div>
+present (<code>"check_pass"</code>) or absent (<code>"check_fail"</code>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>template</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"individualID"</span>, <span class='st'>"specimenID"</span>, <span class='st'>"assay"</span>)
-<span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(individualID = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>), specimenID = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a1"</span>, <span class='st'>"b1"</span>))
-<span class='fu'>check_col_names</span>(<span class='kw'>dat</span>, <span class='kw'>template</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span></div><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>syn</span> <span class='op'>&lt;-</span> <span class='kw'>synapse</span><span class='op'>$</span><span class='fu'>Synapse</span>()
-<span class='kw'>syn</span><span class='op'>$</span><span class='fu'>login</span>()
-
-<span class='kw'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(path = <span class='st'>"/path/file.txt"</span>, parent = <span class='st'>"syn123"</span>, assay = <span class='st'>"rnaSeq"</span>)
-<span class='fu'>check_cols_manifest</span>(<span class='kw'>a</span>, <span class='kw'>syn</span>)
-
-<span class='kw'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"rnaSeq"</span>)
-<span class='fu'>check_cols_manifest</span>(<span class='kw'>b</span>, <span class='kw'>syn</span>)
-}</div></span></pre>
+    <pre class="examples"><div class='input'><span class='kw'>samples_table</span> <span class='op'>&lt;-</span> <span class='kw'>tibble</span>::<span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span>(
+  <span class='op'>~</span><span class='kw'>individualID</span>, <span class='op'>~</span><span class='kw'>specimenID</span>,   <span class='op'>~</span><span class='kw'>study</span>,   <span class='op'>~</span><span class='kw'>assay</span>,
+             <span class='st'>"A"</span>,        <span class='st'>"a1"</span>, <span class='st'>"study1"</span>, <span class='st'>"rnaSeq"</span>,
+             <span class='st'>"A"</span>,        <span class='st'>"a2"</span>, <span class='st'>"study1"</span>, <span class='st'>"rnaSeq"</span>,
+             <span class='st'>"B"</span>,        <span class='st'>"b1"</span>, <span class='st'>"study1"</span>, <span class='st'>"rnaSeq"</span>,
+             <span class='st'>"B"</span>,        <span class='st'>"b2"</span>, <span class='st'>"study1"</span>, <span class='st'>"rnaSeq"</span>,
+             <span class='st'>"B"</span>,        <span class='st'>"b1"</span>, <span class='st'>"study1"</span>, <span class='st'>"rnaSeq"</span>,
+             <span class='st'>"B"</span>,        <span class='st'>"b1"</span>, <span class='st'>"study1"</span>, <span class='st'>"rnaSeq"</span>,
+             <span class='st'>"C"</span>,        <span class='st'>"c1"</span>, <span class='st'>"study1"</span>,  <span class='st'>"LC-MS"</span>,
+             <span class='st'>"D"</span>,        <span class='st'>"d1"</span>, <span class='st'>"study2"</span>, <span class='st'>"rnaSeq"</span>,
+             <span class='st'>"D"</span>,        <span class='st'>"d2"</span>, <span class='st'>"study2"</span>, <span class='st'>"rnaSeq"</span>
+)
+<span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='kw'>tibble</span>::<span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span>(
+  <span class='op'>~</span><span class='kw'>individualID</span>, <span class='op'>~</span><span class='kw'>specimenID</span>,
+             <span class='st'>"A"</span>,        <span class='st'>"a1"</span>,
+             <span class='st'>"A"</span>,        <span class='st'>"a2"</span>
+)
+<span class='fu'>check_complete_ids</span>(
+  data = <span class='kw'>dat</span>,
+  samples_table = <span class='kw'>samples_table</span>,
+  id_type = <span class='st'>"individualID"</span>,
+  study = <span class='st'>"study1"</span>
+)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+#&gt; Some IDs are missing from the data</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

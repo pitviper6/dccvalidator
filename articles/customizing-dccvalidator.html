@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9001</span>
       </span>
     </div>
 
@@ -140,7 +140,10 @@ parent: "syn20400157"</code></pre>
 <li>
 <code>path_to_markdown</code>: Location of an R Markdown document with app instructions. If you wish to omit instructions, insert <code>!expr NA</code>.</li>
 <li>
-<code>study_table</code>: Synapse ID of a table that lists all of the existing studies in the consortium. It should have a column called <code>StudyName</code>.</li>
+<code>study_table</code>: Synapse ID of a table that lists all of the existing studies in the consortium. It should have a column called <code>StudyName</code>
+</li>
+<li>
+<code>samples_table</code>: Synapse ID of a table that lists the key-value pairs of <code>study</code>, <code>individualID</code>, <code>specimenID</code>, <code>assay</code>, <code>species</code> to validate that additions to existing studies retain all IDs that were previously shared.</li>
 <li>
 <code>annotations_table</code>: Synapse ID of a table that lists allowable annotation keys and values for the consortium. This should follow the same basic format as our Synapse Annotations table, e.g. there must be the following columns: <code>key</code>, <code>value</code>, and <code>columnType</code>. <code>columnType</code> options are <code>STRING</code>, <code>BOOLEAN</code>, <code>INTEGER</code>, <code>DOUBLE</code>.</li>
 <li>
@@ -308,7 +311,7 @@ parent: "syn20400157"</code></pre>
     header = <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardHeader.html">dashboardHeader</a></span>(),
     sidebar = <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardSidebar.html">dashboardSidebar</a></span>(),
     body = <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html">dashboardBody</a></span>(
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/include.html">includeCSS</a></span>(
+      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/include.html">includeCSS</a></span>(
         <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"app/www/custom.css"</span>, package = <span class="st">"dccvalidator"</span>)
       ),
       <span class="fu"><a href="../reference/results_boxes_ui.html">results_boxes_ui</a></span>(<span class="st">"Validation Results"</span>)

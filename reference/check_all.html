@@ -76,7 +76,7 @@ complete_columns for each metadataType." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9001</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@ assay depends on the assay type. Additionally, there should be
 complete_columns for each metadataType.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_all</span>(<span class='kw'>data</span>, <span class='kw'>annotations</span>, <span class='kw'>syn</span>)</pre>
+    <pre class="usage"><span class='fu'>check_all</span>(<span class='kw'>data</span>, <span class='kw'>annotations</span>, <span class='kw'>study</span>, <span class='kw'>syn</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,6 +170,10 @@ present.</p></td>
       <th>annotations</th>
       <td><p>A data frame of annotation definitions. Must contain at
 least three columns: <code>key</code>, <code>value</code>, and <code>columnType</code>.</p></td>
+    </tr>
+    <tr>
+      <th>study</th>
+      <td><p>A string containing the name of the study.</p></td>
     </tr>
     <tr>
       <th>syn</th>

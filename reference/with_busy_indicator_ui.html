@@ -79,7 +79,7 @@ appear." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9001</span>
       </span>
     </div>
 
@@ -218,7 +218,7 @@ SOFTWARE.</p>
 }
 
 <span class='kw'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/include.html'>includeCSS</a></span>(
+  <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/include.html'>includeCSS</a></span>(
    <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"app/www/custom.css"</span>, package = <span class='st'>"dccvalidator"</span>)
   ),
   <span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/with_busy_indicator_ui.html'>with_busy_indicator_ui</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"action"</span>, label = <span class='st'>"Action"</span>)),
