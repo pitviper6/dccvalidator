@@ -227,7 +227,7 @@ present (<code>"check_pass"</code>) or absent (<code>"check_fail"</code>).</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>template</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"individualID"</span>, <span class='st'>"specimenID"</span>, <span class='st'>"assay"</span>)
 <span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(individualID = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>), specimenID = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a1"</span>, <span class='st'>"b1"</span>))
-<span class='fu'>check_col_names</span>(<span class='kw'>dat</span>, <span class='kw'>template</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span></div><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>check_col_names</span>(<span class='kw'>dat</span>, <span class='kw'>template</span>)</div><div class='output co'>#&gt; &lt;error/check_fail&gt;</div><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='kw'>syn</span> <span class='op'>&lt;-</span> <span class='kw'>synapse</span><span class='op'>$</span><span class='fu'>Synapse</span>()
 <span class='kw'>syn</span><span class='op'>$</span><span class='fu'>login</span>()
 
@@ -236,7 +236,7 @@ present (<code>"check_pass"</code>) or absent (<code>"check_fail"</code>).</p>
 
 <span class='kw'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"rnaSeq"</span>)
 <span class='fu'>check_cols_manifest</span>(<span class='kw'>b</span>, <span class='kw'>syn</span>)
-}</div></span></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

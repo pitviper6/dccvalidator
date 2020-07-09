@@ -206,7 +206,7 @@ dictionary. Erroneous keys are included as data within the object.</p>
 )
 <span class='kw'>dat1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x = <span class='fl'>1</span>)
 <span class='kw'>dat2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"rnaSeq"</span>)
-<span class='fu'>check_annotation_keys</span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+<span class='fu'>check_annotation_keys</span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; &lt;error/check_fail&gt;
 #&gt; Some annotation keys are invalid</div><div class='input'><span class='fu'>check_annotation_keys</span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; &lt;check_pass: All annotation keys are valid&gt;</div><div class='input'>
 <span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='kw'>syn</span> <span class='op'>&lt;-</span> <span class='kw'>synapse</span><span class='op'>$</span><span class='fu'>Synapse</span>()
@@ -226,7 +226,7 @@ dictionary. Erroneous keys are included as data within the object.</p>
 <span class='co'># be logged in to Synapse)</span>
 <span class='kw'>my_file</span> <span class='op'>&lt;-</span> <span class='kw'>syn</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"syn11931757"</span>, downloadFile = <span class='fl'>FALSE</span>)
 <span class='fu'>check_annotation_keys</span>(<span class='kw'>my_file</span>, syn = <span class='kw'>syn</span>)
-}</div></span></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
