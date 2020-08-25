@@ -140,7 +140,7 @@ indicating which teams they need to belong to and how to request access." />
     </div>
 
     <div class="ref-description">
-    <p>Takes the output from <code>check_team_membership()</code> and <code>check_certified_user()</code>.
+    <p>Takes the output from <code><a href='check_team_membership.html'>check_team_membership()</a></code> and <code><a href='check_certified_user.html'>check_certified_user()</a></code>.
 If the user is not in the required teams or certified, creates a modal dialog
 indicating which teams they need to belong to and how to request access.</p>
     </div>
@@ -152,11 +152,11 @@ indicating which teams they need to belong to and how to request access.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>membership</th>
-      <td><p>Output from <code>check_team_membership()</code></p></td>
+      <td><p>Output from <code><a href='check_team_membership.html'>check_team_membership()</a></code></p></td>
     </tr>
     <tr>
       <th>certified</th>
-      <td><p>Output from <code>check_certified_user()</code></p></td>
+      <td><p>Output from <code><a href='check_certified_user.html'>check_certified_user()</a></code></p></td>
     </tr>
     <tr>
       <th>syn</th>
@@ -174,12 +174,12 @@ describing which requirements are not met.</p>
 <span class='kw'>syn</span> <span class='op'>&lt;-</span> <span class='kw'>synapse</span><span class='op'>$</span><span class='fu'>Synapse</span>()
 <span class='kw'>syn</span><span class='op'>$</span><span class='fu'>login</span>()
 <span class='kw'>user</span> <span class='op'>&lt;-</span> <span class='kw'>syn</span><span class='op'>$</span><span class='fu'>getUserProfile</span>(<span class='st'>"dcctravistest"</span>)
-<span class='kw'>membership</span> <span class='op'>&lt;-</span> <span class='fu'>check_team_membership</span>(
+<span class='kw'>membership</span> <span class='op'>&lt;-</span> <span class='fu'><a href='check_team_membership.html'>check_team_membership</a></span>(
   teams = <span class='st'>"3396691"</span>,
   user = <span class='kw'>user</span>,
   syn = <span class='kw'>syn</span>
  )
-<span class='kw'>certified</span> <span class='op'>&lt;-</span> <span class='fu'>check_certified_user</span>(<span class='kw'>user</span><span class='op'>$</span><span class='kw'>ownerId</span>, syn = <span class='kw'>syn</span>)
+<span class='kw'>certified</span> <span class='op'>&lt;-</span> <span class='fu'><a href='check_certified_user.html'>check_certified_user</a></span>(<span class='kw'>user</span><span class='op'>$</span><span class='kw'>ownerId</span>, syn = <span class='kw'>syn</span>)
 <span class='fu'>report_unsatisfied_requirements</span>(<span class='kw'>membership</span>, <span class='kw'>certified</span>, syn = <span class='kw'>syn</span>)
 }</div></pre>
   </div>

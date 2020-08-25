@@ -143,19 +143,19 @@ file, or Synapse file view." />
 file, or Synapse file view.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_keys.html'>valid_annotation_keys</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for `NULL`</span>
-<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_keys.html'>valid_annotation_keys</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
+<span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for synapseclient.entity.File</span>
-<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_keys.html'>valid_annotation_keys</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>syn</span>, <span class='kw'>...</span>)
+<span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>syn</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_keys.html'>valid_annotation_keys</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
+<span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for synapseclient.table.CsvFileTable</span>
-<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_keys.html'>valid_annotation_keys</a></span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -171,7 +171,7 @@ least three columns: <code>key</code>, <code>value</code>, and <code>columnType<
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters passed to <code><a href='https://rdrr.io/pkg/dccvalidator/man/check_keys.html'>check_keys()</a></code></p></td>
+      <td><p>Additional parameters passed to <code><a href='check_keys.html'>check_keys()</a></code></p></td>
     </tr>
     <tr>
       <th>syn</th>
@@ -200,7 +200,7 @@ least three columns: <code>key</code>, <code>value</code>, and <code>columnType<
 )
 <span class='kw'>dat1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x = <span class='fl'>1</span>)
 <span class='kw'>dat2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"rnaSeq"</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_keys.html'>valid_annotation_keys</a></span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; character(0)</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/dccvalidator/man/valid_annotation_keys.html'>valid_annotation_keys</a></span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; [1] "assay"</div></pre>
+<span class='fu'>valid_annotation_keys</span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; character(0)</div><div class='input'><span class='fu'>valid_annotation_keys</span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; [1] "assay"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

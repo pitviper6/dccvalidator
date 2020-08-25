@@ -186,13 +186,6 @@ parent: "syn20400157"</code></pre>
 )
 
 <span class="kw">manifest</span>
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 3 x 12</span>
 <span class="co">#&gt;   path  parent specimenID individualID assay fakeAnnotation tissue organ</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;</span>
@@ -310,7 +303,7 @@ parent: "syn20400157"</code></pre>
   )
   
   <span class="co"># Show results in boxes</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/callModule.html">callModule</a></span>(<span class="kw">results_boxes_server</span>, <span class="st">"Validation Results"</span>, <span class="kw">res</span>)
+  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/callModule.html">callModule</a></span>(<span class="kw">results_boxes_server</span>, <span class="st">"Validation Results"</span>, <span class="kw">res</span>)
 }
 
 <span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">request</span>) {
@@ -326,7 +319,7 @@ parent: "syn20400157"</code></pre>
   )
 }
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(<span class="kw">ui</span>, <span class="kw">server</span>)
+<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(<span class="kw">ui</span>, <span class="kw">server</span>)
 </pre></div>
 </div>
 </div>

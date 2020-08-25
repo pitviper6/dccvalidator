@@ -164,15 +164,15 @@ the validation results.</p>
     </tr>
     <tr>
       <th>input</th>
-      <td><p>The input from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code>.</p></td>
+      <td><p>The input from <code><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>shiny::callModule()</a></code>.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>The output from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code>.</p></td>
+      <td><p>The output from <code><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>shiny::callModule()</a></code>.</p></td>
     </tr>
     <tr>
       <th>session</th>
-      <td><p>The session from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code>.</p></td>
+      <td><p>The session from <code><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>shiny::callModule()</a></code>.</p></td>
     </tr>
     <tr>
       <th>results</th>
@@ -194,15 +194,15 @@ results.</p></td>
 <span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input</span>, <span class='kw'>output</span>) {
   <span class='co'># Create some sample results</span>
   <span class='kw'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='fu'>check_pass</span>(msg = <span class='st'>"All good!"</span>, behavior = <span class='st'>"Values should be &gt;10"</span>),
-    <span class='fu'>check_fail</span>(
+    <span class='fu'><a href='check_pass.html'>check_pass</a></span>(msg = <span class='st'>"All good!"</span>, behavior = <span class='st'>"Values should be &gt;10"</span>),
+    <span class='fu'><a href='check_pass.html'>check_fail</a></span>(
       msg = <span class='st'>"Some values are too small"</span>,
       behavior = <span class='st'>"Values should be &gt; 10"</span>,
       data = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5.5</span>, <span class='fl'>1.3</span>)
     )
   )
   <span class='co'># Show results in boxes</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='kw'>results_boxes_server</span>, <span class='st'>"Validation Results"</span>, <span class='kw'>res</span>)
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span>(<span class='kw'>results_boxes_server</span>, <span class='st'>"Validation Results"</span>, <span class='kw'>res</span>)
 }
 
 <span class='kw'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>request</span>) {
@@ -218,7 +218,7 @@ results.</p></td>
   )
 }
 <span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
+<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

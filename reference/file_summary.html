@@ -164,15 +164,15 @@ overview and detailed summary of a chosen file.</p>
     </tr>
     <tr>
       <th>input</th>
-      <td><p>the input variables from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code></p></td>
+      <td><p>the input variables from <code><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>shiny::callModule()</a></code></p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>the output variables from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code></p></td>
+      <td><p>the output variables from <code><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>shiny::callModule()</a></code></p></td>
     </tr>
     <tr>
       <th>session</th>
-      <td><p>the session from <code><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>shiny::callModule()</a></code></p></td>
+      <td><p>the session from <code><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>shiny::callModule()</a></code></p></td>
     </tr>
     <tr>
       <th>file_data</th>
@@ -195,7 +195,7 @@ tibbles</p></td>
 #&gt; <span class='message'>    box</span></div><div class='input'>
 <span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input</span>, <span class='kw'>output</span>) {
   <span class='co'># Create some simple file dataa</span>
-  <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span>({
+  <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span>({
     <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
       <span class='st'>"individual"</span> = <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
         individualID = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span>),
@@ -211,7 +211,7 @@ tibbles</p></td>
     )
   })
   <span class='co'># Show file summary</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='kw'>file_summary_server</span>, <span class='st'>"summary"</span>, file_data = <span class='kw'>data</span>)
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span>(<span class='kw'>file_summary_server</span>, <span class='st'>"summary"</span>, file_data = <span class='kw'>data</span>)
 }
 
 <span class='kw'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>request</span>) {
@@ -227,7 +227,7 @@ tibbles</p></td>
   )
 }
 <span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
+<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
