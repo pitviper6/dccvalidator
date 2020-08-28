@@ -73,7 +73,7 @@ invalid keys; see check_annotation_keys()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9003</span>
       </span>
     </div>
 
@@ -212,8 +212,10 @@ as valid (see <code><a href='can_coerce.html'>can_coerce()</a></code>).</p>
 )
 <span class='kw'>dat1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"not a valid assay"</span>)
 <span class='kw'>dat2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"rnaSeq"</span>)
-<span class='fu'>check_annotation_values</span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; &lt;error/check_fail&gt;
-#&gt; Some annotation values are invalid</div><div class='input'><span class='fu'>check_annotation_values</span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; &lt;check_pass: All annotation values are valid&gt;</div><div class='input'>
+<span class='fu'>check_annotation_values</span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)
+</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+#&gt; Some annotation values are invalid</div><div class='input'><span class='fu'>check_annotation_values</span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)
+</div><div class='output co'>#&gt; &lt;check_pass: All annotation values are valid&gt;</div><div class='input'>
 <span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='kw'>syn</span> <span class='op'>&lt;-</span> <span class='kw'>synapse</span><span class='op'>$</span><span class='fu'>Synapse</span>()
 <span class='kw'>syn</span><span class='op'>$</span><span class='fu'>login</span>()
@@ -247,7 +249,8 @@ as valid (see <code><a href='can_coerce.html'>can_coerce()</a></code>).</p>
   whitelist_values = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(assay = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>)),
   syn = <span class='kw'>syn</span>
 )
-}</div></pre>
+}
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

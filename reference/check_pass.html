@@ -76,7 +76,7 @@ additional data on the source of errors or invalid data if needed." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9003</span>
       </span>
     </div>
 
@@ -178,16 +178,19 @@ function was checking for)</p></td>
     <p>An S3 object of class "check_pass", "check_warn", or "check_fail"</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>check_pass</span>(msg = <span class='st'>"Success!"</span>, behavior = <span class='st'>"Files should be complete"</span>)</div><div class='output co'>#&gt; &lt;check_pass: Success!&gt;</div><div class='input'><span class='fu'>check_warn</span>(
+    <pre class="examples"><div class='input'><span class='fu'>check_pass</span>(msg = <span class='st'>"Success!"</span>, behavior = <span class='st'>"Files should be complete"</span>)
+</div><div class='output co'>#&gt; &lt;check_pass: Success!&gt;</div><div class='input'><span class='fu'>check_warn</span>(
   msg = <span class='st'>"Warning, some data is missing"</span>,
   behavior = <span class='st'>"Files should be complete"</span>,
   data = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"specimenID"</span>, <span class='st'>"assay"</span>) <span class='co'># columns with missing data</span>
-)</div><div class='output co'>#&gt; &lt;check_warn: Warning, some data is missing&gt;</div><div class='input'><span class='fu'>check_fail</span>(
+)
+</div><div class='output co'>#&gt; &lt;check_warn: Warning, some data is missing&gt;</div><div class='input'><span class='fu'>check_fail</span>(
   msg = <span class='st'>"Error, some required data is missing"</span>,
   behavior = <span class='st'>"Files should be complete"</span>,
   data = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"specimenID"</span>, <span class='st'>"assay"</span>) <span class='co'># columns with missing data</span>
-)</div><div class='output co'>#&gt; &lt;error/check_fail&gt;
-#&gt; Error, some required data is missing</div></pre>
+)
+</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+#&gt; Error, some required data is missing</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

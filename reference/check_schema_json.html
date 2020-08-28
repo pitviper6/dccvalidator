@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9003</span>
       </span>
     </div>
 
@@ -187,30 +187,18 @@ schema.</p>
   },
   "required": ["x"]
 }
-'</span>chema <- '{
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "properties": {
-    "x": {
-      "type": "integer"
-    }
-  },
-  "required": ["x"]
-}
-'
+'</span>
 <span class='kw'>json_valid</span> <span class='op'>&lt;-</span> <span class='st'>'{
   "x": 3
-}'</span>on_valid <- '{
-  "x": 3
-}'
+}'</span>
 <span class='kw'>json_invalid</span> <span class='op'>&lt;-</span> <span class='st'>'{
   "x": 1.5
-}'</span>on_invalid <- '{
-  "x": 1.5
-}'
+}'</span>
 <span class='fu'>check_schema_json</span>(<span class='kw'>json_valid</span>, <span class='kw'>schema</span>)
 <span class='fu'>check_schema_json</span>(<span class='kw'>json_invalid</span>, <span class='kw'>schema</span>)
-}</div><div class='output co'>#&gt; &lt;error/check_fail&gt;
-#&gt; Data is invalid against the schema</div></pre>
+}
+</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
+#&gt; Data is invalid against the schema</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

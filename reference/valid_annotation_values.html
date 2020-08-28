@@ -73,7 +73,7 @@ file, or Synapse file view." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9003</span>
       </span>
     </div>
 
@@ -200,7 +200,9 @@ least three columns: <code>key</code>, <code>value</code>, and <code>columnType<
 )
 <span class='kw'>dat1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"not a valid assay"</span>)
 <span class='kw'>dat2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"rnaSeq"</span>)
-<span class='fu'>valid_annotation_values</span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; named list()</div><div class='input'><span class='fu'>valid_annotation_values</span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)</div><div class='output co'>#&gt; $assay
+<span class='fu'>valid_annotation_values</span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)
+</div><div class='output co'>#&gt; named list()</div><div class='input'><span class='fu'>valid_annotation_values</span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)
+</div><div class='output co'>#&gt; $assay
 #&gt; [1] "rnaSeq"
 #&gt; </div></pre>
   </div>

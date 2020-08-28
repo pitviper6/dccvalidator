@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dccvalidator</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9003</span>
       </span>
     </div>
 
@@ -182,10 +182,12 @@ ninety.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(ageDeath = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>65</span>, <span class='fl'>80</span>, <span class='fl'>95</span>))
-<span class='fu'>check_ages_over_90</span>(<span class='kw'>dat</span>)</div><div class='output co'>#&gt; &lt;check_warn: Ages over 90 detected in the data&gt;</div><div class='input'>
+<span class='fu'>check_ages_over_90</span>(<span class='kw'>dat</span>)
+</div><div class='output co'>#&gt; &lt;check_warn: Ages over 90 detected in the data&gt;</div><div class='input'>
 <span class='co'># Can check multiple columns</span>
 <span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(age1 = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>55</span>), age2 = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>95</span>))
-<span class='fu'>check_ages_over_90</span>(<span class='kw'>dat</span>)</div><div class='output co'>#&gt; &lt;check_pass: No ages over 90 detected&gt;</div></pre>
+<span class='fu'>check_ages_over_90</span>(<span class='kw'>dat</span>)
+</div><div class='output co'>#&gt; &lt;check_pass: No ages over 90 detected&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
