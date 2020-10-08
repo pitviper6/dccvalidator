@@ -171,15 +171,15 @@ parent: "syn20400157"</code></pre>
 <p>Functions to check data for common quality issues are at the core of dccvalidator. These functions in dccvalidator are all named with the pattern <code>check_*()</code>: <code><a href="../reference/check_annotation_keys.html">check_annotation_keys()</a></code>, <code><a href="../reference/check_annotation_values.html">check_annotation_values()</a></code>, <code><a href="../reference/check_cols_empty.html">check_cols_empty()</a></code>, etc. See the <a href="https://sage-bionetworks.github.io/dccvalidator/reference/index.html#section-data-validation-functions">function reference</a> for a complete list.</p>
 <p>These functions are used in the dccvalidator Shiny app, but they can also be used in scripts or reports. Each function takes data as input and returns results in the form of custom condition objects. The condition objects inherit from R’s <code>"message"</code>, <code>"warning"</code>, and <code>"error"</code> classes. However, rather than raising a message/warning/error, the check functions in dccvalidator return the condition objects themselves.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://sage-bionetworks.github.io/dccvalidator">"dccvalidator"</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://readr.tidyverse.org">"readr"</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://sage-bionetworks.github.io/dccvalidator">"dccvalidator"</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://readr.tidyverse.org">"readr"</a></span><span class="op">)</span>
 
 <span class="co">## Load a sample manifest</span>
-<span class="kw">manifest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span>(
-  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test_manifest.txt"</span>, package = <span class="st">"dccvalidator"</span>)
-)
+<span class="va">manifest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test_manifest.txt"</span>, package <span class="op">=</span> <span class="st">"dccvalidator"</span><span class="op">)</span>
+<span class="op">)</span>
 
-<span class="kw">manifest</span>
+<span class="va">manifest</span>
 <span class="co">#&gt; # A tibble: 3 x 12</span>
 <span class="co">#&gt;   path  parent specimenID individualID assay fakeAnnotation tissue organ</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;</span>
@@ -190,131 +190,126 @@ parent: "syn20400157"</code></pre>
 <span class="co">#&gt; #   grant &lt;lgl&gt;, consortium &lt;lgl&gt;</span>
 
 <span class="co">## Check that required columns are complete in the manifest</span>
-<span class="kw">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_cols_complete.html">check_cols_complete</a></span>(
-  <span class="kw">manifest</span>,
-  required_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"path"</span>, <span class="st">"parent"</span>, <span class="st">"grant"</span>)
-)
+<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_cols_complete.html">check_cols_complete</a></span><span class="op">(</span>
+  <span class="va">manifest</span>,
+  required_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"path"</span>, <span class="st">"parent"</span>, <span class="st">"grant"</span><span class="op">)</span>
+<span class="op">)</span>
 
-<span class="kw">result</span>
+<span class="va">result</span>
 <span class="co">#&gt; &lt;error/check_fail&gt;</span>
-<span class="co">#&gt; There is missing data in some columns that are required to be complete</span>
-</pre></div>
+<span class="co">#&gt; There is missing data in some columns that are required to be complete</span></pre></div>
 <p>The condition objects contain several useful pieces of information. There is a message describing the result of the check, as well as a message describing the expected outcome. For warnings and errors, the data that caused the warning or error is included.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">result</span><span class="op">$</span><span class="kw">message</span>
+<span class="va">result</span><span class="op">$</span><span class="va">message</span>
 <span class="co">#&gt; [1] "There is missing data in some columns that are required to be complete"</span>
-<span class="kw">result</span><span class="op">$</span><span class="kw">behavior</span>
+<span class="va">result</span><span class="op">$</span><span class="va">behavior</span>
 <span class="co">#&gt; [1] "There should be no missing values in columns path, parent, grant"</span>
-<span class="kw">result</span><span class="op">$</span><span class="kw">data</span>
-<span class="co">#&gt; [1] "grant"</span>
-</pre></div>
+<span class="va">result</span><span class="op">$</span><span class="va">data</span>
+<span class="co">#&gt; [1] "grant"</span></pre></div>
 </div>
 <div id="creating-new-validation-functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-new-validation-functions" class="anchor"></a>Creating new validation functions</h3>
 <p>While we have functions for many data validation tasks, users may wish to create their own custom checking functions. The functions <code><a href="../reference/check_pass.html">check_pass()</a></code>, <code><a href="../reference/check_pass.html">check_warn()</a></code>, and <code><a href="../reference/check_pass.html">check_fail()</a></code> will create condition objects from the provided arguments. Here is an example of how one could write a custom function that checks if pH values are within an appropriate range.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(pH = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">0</span>, <span class="fl">15</span>))
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>pH <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">0</span>, <span class="fl">15</span><span class="op">)</span><span class="op">)</span>
 
-<span class="kw">check_values_ph</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">data</span>, <span class="kw">ph_col</span> = <span class="st">"pH"</span>,
-                            <span class="kw">success_msg</span> = <span class="st">"All pH values are valid"</span>,
-                            <span class="kw">fail_msg</span> = <span class="st">"Some pH values are outside the range 0-14"</span>,
-                            <span class="kw">behavior_msg</span> = <span class="st">"pH values should be between 0-14"</span>) {
-  <span class="kw">values</span> <span class="op">&lt;-</span> <span class="kw">data</span>[, <span class="kw">ph_col</span>, drop = <span class="fl">TRUE</span>]
-  <span class="co">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span>(<span class="kw">values</span> <span class="op">&gt;=</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="kw">values</span> <span class="op">&lt;=</span> <span class="fl">14</span>)) {
-    <span class="fu"><a href="../reference/check_pass.html">check_pass</a></span>(
-      msg = <span class="kw">success_msg</span>,
-      behavior = <span class="kw">behavior_msg</span>
-    )
-  } <span class="co">else</span> {
-    <span class="fu"><a href="../reference/check_pass.html">check_fail</a></span>(
-      msg = <span class="kw">fail_msg</span>,
-      behavior = <span class="kw">behavior_msg</span>,
-      data = <span class="kw">values</span>[<span class="kw">values</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">|</span> <span class="kw">values</span> <span class="op">&lt;</span> <span class="fl">0</span>]
-    )
-  }
-}
+<span class="va">check_values_ph</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">ph_col</span> <span class="op">=</span> <span class="st">"pH"</span>,
+                            <span class="va">success_msg</span> <span class="op">=</span> <span class="st">"All pH values are valid"</span>,
+                            <span class="va">fail_msg</span> <span class="op">=</span> <span class="st">"Some pH values are outside the range 0-14"</span>,
+                            <span class="va">behavior_msg</span> <span class="op">=</span> <span class="st">"pH values should be between 0-14"</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">values</span> <span class="op">&lt;-</span> <span class="va">data</span><span class="op">[</span>, <span class="va">ph_col</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">values</span> <span class="op">&gt;=</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">values</span> <span class="op">&lt;=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu"><a href="../reference/check_pass.html">check_pass</a></span><span class="op">(</span>
+      msg <span class="op">=</span> <span class="va">success_msg</span>,
+      behavior <span class="op">=</span> <span class="va">behavior_msg</span>
+    <span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="../reference/check_pass.html">check_fail</a></span><span class="op">(</span>
+      msg <span class="op">=</span> <span class="va">fail_msg</span>,
+      behavior <span class="op">=</span> <span class="va">behavior_msg</span>,
+      data <span class="op">=</span> <span class="va">values</span><span class="op">[</span><span class="va">values</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">|</span> <span class="va">values</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">]</span>
+    <span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span>
 
-<span class="fu">check_values_ph</span>(<span class="kw">dat</span>)
+<span class="fu">check_values_ph</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>
 <span class="co">#&gt; &lt;error/check_fail&gt;</span>
-<span class="co">#&gt; Some pH values are outside the range 0-14</span>
-</pre></div>
+<span class="co">#&gt; Some pH values are outside the range 0-14</span></pre></div>
 <p>The <code><a href="../reference/check_condition.html">check_condition()</a></code> function can make the above a little more concise:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">check_values_ph</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">data</span>, <span class="kw">ph_col</span> = <span class="st">"pH"</span>,
-                            <span class="kw">success_msg</span> = <span class="st">"All pH values are valid"</span>,
-                            <span class="kw">fail_msg</span> = <span class="st">"Some pH values are outside the range 0-14"</span>,
-                            <span class="kw">behavior_msg</span> = <span class="st">"pH values should be between 0-14"</span>) {
-  <span class="kw">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>(<span class="kw">data</span>[, <span class="kw">ph_col</span>, drop = <span class="fl">TRUE</span>])
-  <span class="kw">all_valid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span>(<span class="kw">values</span> <span class="op">&gt;=</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="kw">values</span> <span class="op">&lt;=</span> <span class="fl">14</span>)
+<span class="va">check_values_ph</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">ph_col</span> <span class="op">=</span> <span class="st">"pH"</span>,
+                            <span class="va">success_msg</span> <span class="op">=</span> <span class="st">"All pH values are valid"</span>,
+                            <span class="va">fail_msg</span> <span class="op">=</span> <span class="st">"Some pH values are outside the range 0-14"</span>,
+                            <span class="va">behavior_msg</span> <span class="op">=</span> <span class="st">"pH values should be between 0-14"</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>, <span class="va">ph_col</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">)</span>
+  <span class="va">all_valid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">values</span> <span class="op">&gt;=</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">values</span> <span class="op">&lt;=</span> <span class="fl">14</span><span class="op">)</span>
   
-  <span class="fu"><a href="../reference/check_condition.html">check_condition</a></span>(
-    msg = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">all_valid</span>, <span class="kw">success_msg</span>, <span class="kw">fail_msg</span>),
-    behavior = <span class="kw">behavior_msg</span>,
-    data = <span class="co">if</span> (<span class="op">!</span><span class="kw">all_valid</span>) <span class="kw">values</span>[<span class="kw">values</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">|</span> <span class="kw">values</span> <span class="op">&lt;</span> <span class="fl">0</span>],
-    type = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">all_valid</span>, <span class="st">"check_pass"</span>, <span class="st">"check_fail"</span>)
-  )
-}
-</pre></div>
+  <span class="fu"><a href="../reference/check_condition.html">check_condition</a></span><span class="op">(</span>
+    msg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">all_valid</span>, <span class="va">success_msg</span>, <span class="va">fail_msg</span><span class="op">)</span>,
+    behavior <span class="op">=</span> <span class="va">behavior_msg</span>,
+    data <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="va">all_valid</span><span class="op">)</span> <span class="va">values</span><span class="op">[</span><span class="va">values</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">|</span> <span class="va">values</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">]</span>,
+    type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">all_valid</span>, <span class="st">"check_pass"</span>, <span class="st">"check_fail"</span><span class="op">)</span>
+  <span class="op">)</span>
+<span class="op">}</span></pre></div>
 </div>
 <div id="reusing-app-modules" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reusing-app-modules" class="anchor"></a>Reusing app modules</h3>
 <p>The Shiny app that dccvalidator provides allows users to see the results of data validation. This module (<code><a href="../reference/results_boxes_ui.html">results_boxes_server()</a></code>/<code><a href="../reference/results_boxes_ui.html">results_boxes_ui()</a></code>) is exported from dccvalidator and can be reused in other Shiny applications like so:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://shiny.rstudio.com">"shiny"</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://rstudio.github.io/shinydashboard">"shinydashboard"</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://shiny.rstudio.com">"shiny"</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://rstudio.github.io/shinydashboard/">"shinydashboard"</a></span><span class="op">)</span>
 
-<span class="kw">server</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">input</span>, <span class="kw">output</span>) {
+<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
   <span class="co"># Load sample data</span>
-  <span class="kw">manifest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test_manifest.txt"</span>, package = <span class="st">"dccvalidator"</span>)
-  )
-  <span class="kw">biosp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"test_biospecimen.csv"</span>, package = <span class="st">"dccvalidator"</span>)
-  )
+  <span class="va">manifest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test_manifest.txt"</span>, package <span class="op">=</span> <span class="st">"dccvalidator"</span><span class="op">)</span>
+  <span class="op">)</span>
+  <span class="va">biosp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"test_biospecimen.csv"</span>, package <span class="op">=</span> <span class="st">"dccvalidator"</span><span class="op">)</span>
+  <span class="op">)</span>
   
   <span class="co"># Add logic to run the checks you are interested in and store the results in a</span>
   <span class="co"># list. Here is an example:</span>
-  <span class="kw">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="fu"><a href="../reference/check_cols_complete.html">check_cols_complete</a></span>(
-      <span class="kw">manifest</span>,
-      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"path"</span>, <span class="st">"parent"</span>, <span class="st">"grant"</span>),
-      success_msg = <span class="st">"All required columns present are complete in the manifest"</span>,
-      fail_msg = <span class="st">"Some required columns are incomplete in the manifest"</span>
-    ),
-    <span class="fu"><a href="../reference/check_cols_complete.html">check_cols_complete</a></span>(
-      <span class="kw">biosp</span>,
+  <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    <span class="fu"><a href="../reference/check_cols_complete.html">check_cols_complete</a></span><span class="op">(</span>
+      <span class="va">manifest</span>,
+      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"path"</span>, <span class="st">"parent"</span>, <span class="st">"grant"</span><span class="op">)</span>,
+      success_msg <span class="op">=</span> <span class="st">"All required columns present are complete in the manifest"</span>,
+      fail_msg <span class="op">=</span> <span class="st">"Some required columns are incomplete in the manifest"</span>
+    <span class="op">)</span>,
+    <span class="fu"><a href="../reference/check_cols_complete.html">check_cols_complete</a></span><span class="op">(</span>
+      <span class="va">biosp</span>,
       <span class="st">"specimenID"</span>,
-      success_msg = <span class="st">"All required columns present are complete in the biospecimen metadata"</span>,
-      fail_msg = <span class="st">"Some required columns are incomplete in the biospecimen metadata"</span>
-    ),
-    <span class="fu"><a href="../reference/check_indiv_ids_dup.html">check_specimen_ids_dup</a></span>(
-      <span class="kw">biosp</span>,
-      success_msg = <span class="st">"Specimen IDs in the biospecimen metadata file are unique"</span>,
-      fail_msg = <span class="st">"Duplicate specimen IDs found in the biospecimen metadata file"</span>
-    )
-  )
+      success_msg <span class="op">=</span> <span class="st">"All required columns present are complete in the biospecimen metadata"</span>,
+      fail_msg <span class="op">=</span> <span class="st">"Some required columns are incomplete in the biospecimen metadata"</span>
+    <span class="op">)</span>,
+    <span class="fu"><a href="../reference/check_indiv_ids_dup.html">check_specimen_ids_dup</a></span><span class="op">(</span>
+      <span class="va">biosp</span>,
+      success_msg <span class="op">=</span> <span class="st">"Specimen IDs in the biospecimen metadata file are unique"</span>,
+      fail_msg <span class="op">=</span> <span class="st">"Duplicate specimen IDs found in the biospecimen metadata file"</span>
+    <span class="op">)</span>
+  <span class="op">)</span>
   
   <span class="co"># Show results in boxes</span>
-  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/callModule.html">callModule</a></span>(<span class="kw">results_boxes_server</span>, <span class="st">"Validation Results"</span>, <span class="kw">res</span>)
-}
+  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/callModule.html">callModule</a></span><span class="op">(</span><span class="va">results_boxes_server</span>, <span class="st">"Validation Results"</span>, <span class="va">res</span><span class="op">)</span>
+<span class="op">}</span>
 
-<span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">request</span>) {
-  <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardPage.html">dashboardPage</a></span>(
-    header = <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardHeader.html">dashboardHeader</a></span>(),
-    sidebar = <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardSidebar.html">dashboardSidebar</a></span>(),
-    body = <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html">dashboardBody</a></span>(
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/include.html">includeCSS</a></span>(
-        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"app/www/custom.css"</span>, package = <span class="st">"dccvalidator"</span>)
-      ),
-      <span class="fu"><a href="../reference/results_boxes_ui.html">results_boxes_ui</a></span>(<span class="st">"Validation Results"</span>)
-    )
-  )
-}
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">request</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardPage.html">dashboardPage</a></span><span class="op">(</span>
+    header <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,
+    sidebar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,
+    body <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html">dashboardBody</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/include.html">includeCSS</a></span><span class="op">(</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"app/www/custom.css"</span>, package <span class="op">=</span> <span class="st">"dccvalidator"</span><span class="op">)</span>
+      <span class="op">)</span>,
+      <span class="fu"><a href="../reference/results_boxes_ui.html">results_boxes_ui</a></span><span class="op">(</span><span class="st">"Validation Results"</span><span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span>
+<span class="op">}</span>
 
-<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(<span class="kw">ui</span>, <span class="kw">server</span>)
-</pre></div>
+<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></pre></div>
 </div>
 </div>
   </div>

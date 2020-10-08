@@ -137,11 +137,11 @@ This function checks if any paths are duplicated." />
 This function checks if any paths are duplicated.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_duplicate_paths</span>(
-  <span class='kw'>data</span>,
-  success_msg = <span class='st'>"No duplicate file paths detected"</span>,
-  fail_msg = <span class='st'>"Duplicate file paths detected"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>check_duplicate_paths</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  success_msg <span class='op'>=</span> <span class='st'>"No duplicate file paths detected"</span>,
+  fail_msg <span class='op'>=</span> <span class='st'>"Duplicate file paths detected"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,11 +174,11 @@ typically run from a Shiny app without access to the user's filesystem, it is
 not possible to detect every possible duplicate path.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>manifest</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  path = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"/path/to/file.txt"</span>, <span class='st'>"/path/to/file.txt"</span>),
-  parent = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"syn123"</span>, <span class='st'>"syn123"</span>)
-)
-<span class='fu'>check_duplicate_paths</span>(<span class='kw'>manifest</span>)
+    <pre class="examples"><div class='input'><span class='va'>manifest</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"/path/to/file.txt"</span>, <span class='st'>"/path/to/file.txt"</span><span class='op'>)</span>,
+  parent <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"syn123"</span>, <span class='st'>"syn123"</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='fu'>check_duplicate_paths</span><span class='op'>(</span><span class='va'>manifest</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
 #&gt; Duplicate file paths detected</div></span></pre>
   </div>

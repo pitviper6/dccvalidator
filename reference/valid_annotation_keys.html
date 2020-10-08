@@ -137,19 +137,19 @@ file, or Synapse file view." />
 file, or Synapse file view.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>valid_annotation_keys</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>annotations</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for `NULL`</span>
-<span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
+<span class='fu'>valid_annotation_keys</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>annotations</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for synapseclient.entity.File</span>
-<span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>syn</span>, <span class='kw'>...</span>)
+<span class='fu'>valid_annotation_keys</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>annotations</span>, <span class='va'>syn</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)
+<span class='fu'>valid_annotation_keys</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>annotations</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for synapseclient.table.CsvFileTable</span>
-<span class='fu'>valid_annotation_keys</span>(<span class='kw'>x</span>, <span class='kw'>annotations</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>valid_annotation_keys</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>annotations</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,15 +187,15 @@ least three columns: <code>key</code>, <code>value</code>, and <code>columnType<
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>annots</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  key = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"assay"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"species"</span>),
-  value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rnaSeq"</span>, <span class='st'>"fastq"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"Human"</span>),
-  columnType = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>)
-)
-<span class='kw'>dat1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x = <span class='fl'>1</span>)
-<span class='kw'>dat2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(assay = <span class='st'>"rnaSeq"</span>)
-<span class='fu'>valid_annotation_keys</span>(<span class='kw'>dat1</span>, <span class='kw'>annots</span>)
-</div><div class='output co'>#&gt; character(0)</div><div class='input'><span class='fu'>valid_annotation_keys</span>(<span class='kw'>dat2</span>, <span class='kw'>annots</span>)
+    <pre class="examples"><div class='input'><span class='va'>annots</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  key <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"assay"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"fileFormat"</span>, <span class='st'>"species"</span><span class='op'>)</span>,
+  value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"rnaSeq"</span>, <span class='st'>"fastq"</span>, <span class='st'>"txt"</span>, <span class='st'>"csv"</span>, <span class='st'>"Human"</span><span class='op'>)</span>,
+  columnType <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span>, <span class='st'>"STRING"</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='va'>dat1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>dat2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>assay <span class='op'>=</span> <span class='st'>"rnaSeq"</span><span class='op'>)</span>
+<span class='fu'>valid_annotation_keys</span><span class='op'>(</span><span class='va'>dat1</span>, <span class='va'>annots</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; character(0)</div><div class='input'><span class='fu'>valid_annotation_keys</span><span class='op'>(</span><span class='va'>dat2</span>, <span class='va'>annots</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "assay"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

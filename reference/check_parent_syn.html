@@ -137,11 +137,11 @@ by numbers." />
 by numbers.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_parent_syn</span>(
-  <span class='kw'>manifest</span>,
-  success_msg = <span class='st'>"All Synapse IDs in the manifest are valid"</span>,
-  fail_msg = <span class='st'>"Some Synapse IDs in the manifest are invalid"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>check_parent_syn</span><span class='op'>(</span>
+  <span class='va'>manifest</span>,
+  success_msg <span class='op'>=</span> <span class='st'>"All Synapse IDs in the manifest are valid"</span>,
+  fail_msg <span class='op'>=</span> <span class='st'>"Some Synapse IDs in the manifest are invalid"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,8 +166,8 @@ by numbers.</p>
 <code>path</code> column of the manifest</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>manifest</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(parent = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"syn"</span>, <span class='st'>"syn123"</span>), stringsAsFactors = <span class='fl'>FALSE</span>)
-<span class='fu'>check_parent_syn</span>(<span class='kw'>manifest</span>)
+    <pre class="examples"><div class='input'><span class='va'>manifest</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>parent <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"syn"</span>, <span class='st'>"syn123"</span><span class='op'>)</span>, stringsAsFactors <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'>check_parent_syn</span><span class='op'>(</span><span class='va'>manifest</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/check_fail&gt;</span><span>
 #&gt; Some Synapse IDs in the manifest are invalid</div></span></pre>
   </div>
