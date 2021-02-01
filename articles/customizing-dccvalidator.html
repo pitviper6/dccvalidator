@@ -264,7 +264,7 @@ parent: "syn20400157"</code></pre>
 <a href="#reusing-app-modules" class="anchor"></a>Reusing app modules</h3>
 <p>The Shiny app that dccvalidator provides allows users to see the results of data validation. This module (<code><a href="../reference/results_boxes_ui.html">results_boxes_server()</a></code>/<code><a href="../reference/results_boxes_ui.html">results_boxes_ui()</a></code>) is exported from dccvalidator and can be reused in other Shiny applications like so:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://shiny.rstudio.com">"shiny"</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.rstudio.com/">"shiny"</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://rstudio.github.io/shinydashboard/">"shinydashboard"</a></span><span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
@@ -299,7 +299,7 @@ parent: "syn20400157"</code></pre>
   <span class="op">)</span>
   
   <span class="co"># Show results in boxes</span>
-  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/callModule.html">callModule</a></span><span class="op">(</span><span class="va">results_boxes_server</span>, <span class="st">"Validation Results"</span>, <span class="va">res</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/callModule.html">callModule</a></span><span class="op">(</span><span class="va">results_boxes_server</span>, <span class="st">"Validation Results"</span>, <span class="va">res</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">request</span><span class="op">)</span> <span class="op">{</span>
@@ -315,7 +315,7 @@ parent: "syn20400157"</code></pre>
   <span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
